@@ -32,6 +32,10 @@ function Nav() {
               Info Page
             </Link>
 
+            <Link className="navLink" to="/addfriend">
+              Add A Friend
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}
