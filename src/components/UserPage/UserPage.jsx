@@ -9,6 +9,7 @@ function UserPage() {
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  // const friends = useSelector((store) => store.friendsReducer);
 
   useEffect(() => {
     console.log('in useEffect FETCH_FRIENDS');
@@ -20,11 +21,11 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <tbody>
-        {/* {store.friends.map((friendz, index) => (
+        {store.friendsReducer.map((friend, index) => (
           <tr key={index}>
-            <td>{friendz.name}</td>
+            <td>{friend.name}</td>
           </tr>
-        ))} */}
+        ))}
       </tbody>
       <LogOutButton className="btn" />
     </div>
