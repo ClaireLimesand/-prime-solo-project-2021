@@ -27,9 +27,21 @@ function* addFriend(action) {
     }
 }
 
+function* fetchFriendDetails(action) {
+    const response = yield axios({
+        method: 'GET',
+        url: `/api/friends/${action.payload}`
+    })
+    yield put ({
+        type: 'SET_FRIEND_DETAILS',
+        payload: response.data
+    })
+}
+
 function* friendsSaga() {
     yield takeEvery('FETCH_FRIENDS', fetchFriends );
     yield takeEvery('ADD_FRIEND', addFriend );
+    yield takeEvery('FETCH_FRIEND_DETAILS', fetchFriendDetails );
 }
 
 export default friendsSaga;

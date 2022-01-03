@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useDispatch, useSelector} from 'react-redux';
 import useReduxStore from '../../hooks/useReduxStore';
+import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -11,17 +12,20 @@ function FriendPage() {
 
     const history = useHistory();
     const dispatch = useDispatch();
+    const params = useParams();
 
-    const friendDetails = useSelector(store => store.friendDetails )
+    const detailsReducer = useSelector(store => store.detailsReducer )
 
     useEffect(() => {
-        console.log('in useEffect FETCH_FRIENDS');
-        dispatch({ type: 'FETCH_FRIENDS' });
+        dispatch({
+            type: 'FETCH_FRIEND_DETAILS',
+            payload: params.id
+        })
     }, []);
 
     return (
     <div>
-        <p>Howdy</p>
+        <p>{detailsReducer.name}</p>
     </div>
     );
 }

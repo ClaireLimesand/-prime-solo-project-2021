@@ -67,8 +67,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         req.params.id;
     pool.query(sqlQuery, [sqlValues])
         .then((dbRes) => {
-            console.log('************')
-            console.log(dbRes.rows)
+            // console.log('************')
+            // console.log(dbRes.rows)
             let friendDetails = {}
             friendDetails.name = dbRes.rows[0].name;
             friendDetails.event = dbRes.rows.map((row) => {
