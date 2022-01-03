@@ -10,9 +10,8 @@ function UserPage() {
   const dispatch = useDispatch();
   const store = useReduxStore();
 
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  // const friends = useSelector((store) => store.friendsReducer);
+  const friendsReducer = useSelector((store) => store.friendsReducer);
 
   useEffect(() => {
     console.log('in useEffect FETCH_FRIENDS');
@@ -25,7 +24,7 @@ function UserPage() {
         type:'FETCH_FREIND_DETAILS',
         payload: friend.id
     });
-    history.push('/friendpage');
+    history.push(`/friendpage/${friend.id}`);
 }
 
   return (
