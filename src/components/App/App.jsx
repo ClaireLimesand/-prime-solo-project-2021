@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import FriendForm from '../FriendForm/FriendForm';
+import FriendPage from '../FriendPage/FriendPage';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
             path="/addfriend"
           >
             <FriendForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/friendpage"
+          >
+            <FriendPage />
           </ProtectedRoute>
 
           <ProtectedRoute

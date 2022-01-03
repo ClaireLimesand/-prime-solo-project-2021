@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+import { useHistory } from "react-router";
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useDispatch, useSelector} from 'react-redux';
 import useReduxStore from '../../hooks/useReduxStore';
 
 function UserPage() {
+
+  const history = useHistory();
   const dispatch = useDispatch();
   const store = useReduxStore();
 
@@ -16,6 +19,15 @@ function UserPage() {
     dispatch({ type: 'FETCH_FRIENDS' });
   }, []);
 
+  const goToFriend = (friend) => {
+    console.log('going to friend page')
+    dispatch ({
+        type:'FETCH_FREIND_DETAILS',
+        payload: friend.id
+    });
+    history.push('/friendpage');
+}
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
@@ -23,7 +35,7 @@ function UserPage() {
       <tbody>
         {store.friendsReducer.map((friend, index) => (
           <tr key={index}>
-            <td>{friend.name}</td>
+            <td onClick={()=>{goToFriend(friend)}}>{friend.name}</td>
           </tr>
         ))}
       </tbody>
