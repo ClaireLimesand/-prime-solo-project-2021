@@ -25,11 +25,28 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-/**
- * POST route template
- */
+// POST to add a new friend 
+
 router.post('/', (req, res) => {
-  // POST route code here
+    console.log('in POST friends server', req.user);
+    const newFriend = req.body;
+
+    const sqlQuery = `
+    INSERT INTO "friends" ("name", "user_id")
+    VALUES ($1, $2)
+`;
+    const sqlValues = [
+        newFriend.name,
+        req.user.id
+    ]
+    pool.query(sqlQuery, sqlValues)
+        .then((dbRes) => {
+        res.sendStatus(201);
+        })
+        .catch((dbErr) => {
+        console.error('POST friends error', dbErr);
+        res.sendStatus(500);
+        })
 });
 
 module.exports = router;

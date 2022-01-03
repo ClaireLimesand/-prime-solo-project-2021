@@ -11,8 +11,25 @@ function* fetchFriends() {
     }
 }
 
+function* addFriend(action) {
+    console.log('action payload', action.payload)
+    try {
+        const response = yield axios({
+            method: 'POST',
+            url: '/api/friends',
+            data: action.payload
+        })
+        yield put({
+            type: 'FETCH_FRIENDS'
+        })
+    } catch (error) {
+        console.log('addFriend error', error);
+    }
+}
+
 function* friendsSaga() {
     yield takeEvery('FETCH_FRIENDS', fetchFriends );
+    yield takeEvery('ADD_FRIEND', addFriend );
 }
 
 export default friendsSaga;
