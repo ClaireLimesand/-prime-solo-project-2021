@@ -26,12 +26,25 @@ function FriendPage() {
     return (
     <div>
         <h3>{detailsReducer.name}</h3>
-        <h5>{detailsReducer.name}'s events</h5>
+        <h5>{detailsReducer.name}'s events:</h5>
+        <ul>
+            {detailsReducer.event && detailsReducer.event.map((event) => {
+                {detailsReducer.date && detailsReducer.date.map((date) => {
+                    return <li>{event} on {date}</li>
+                })}
+            })}
+        </ul>
         {/* <ul>
-            {detailsReducer.event.map((event) => {
-                return <li>{event}</li>
+            {detailsReducer.event && detailsReducer.event.map((event) => {
+                    return <li>{event}</li>
             })}
         </ul> */}
+        <h5>You thought {detailsReducer.name} might like: </h5>
+        <ul>
+            {detailsReducer.ideas && detailsReducer.ideas.map((idea) => {
+                return <li>{idea}</li>
+            })}
+        </ul>
     </div>
     );
 }
