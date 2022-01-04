@@ -49,58 +49,20 @@ router.post('/', (req, res) => {
         })
 });
 
-// router.get('/:id', rejectUnauthenticated, (req, res) => {
-//     console.log('req id', req.params.id)
-//     const sqlQuery = `
-//     SELECT 
-//         "friends"."name",
-//         "events"."event_name",
-//         "events"."event_date",
-//         "gifts"."idea"
-//     FROM "friends" 
-//         LEFT JOIN "events"
-//             ON "friends"."id"="events"."freind_id"
-//         LEFT JOIN "gifts"
-//             ON "friends"."id"="gifts"."friend_id"
-//         WHERE "id" = $1;
-//     `
-//     const sqlValues =
-//         req.params.id;
-//     pool.query(sqlQuery, [sqlValues])
-//         .then((dbRes) => {
-//             console.log('************')
-//             console.log(dbRes.rows)
-//             let friendDetails = {}
-//             friendDetails.name = dbRes.rows[0].name;
-//             friendDetails.event = dbRes.rows.map((row) => {
-//                 return row.event_name
-//             })
-//             friendDetails.date = dbRes.rows.map((row) => {
-//                 return row.event_date
-//             })
-//             friendDetails.ideas = dbRes.rows.map((row) => {
-//                 return row.idea
-//             })
-//             console.log('DETAILS', friendDetails)
-//             res.send(friendDetails);
-//         })
-//         .catch((dbErr) => {
-//             console.error(dbErr);
-//         })
-// })
-
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req id', req.params.id)
     const sqlQuery = `
-    SELECT json_build_object('friend',"friends".name, 'name', "events".event_name, 'date', "events".event_date, 'ideas', ARRAY_AGG("gifts".idea)) as obj FROM "friends"
-    LEFT JOIN "events"
-      ON "friends"."id"="events"."freind_id"
-    LEFT JOIN "gifts"
-      ON "friends"."id"="gifts"."friend_id"
-    -- Optional if you want to sort via person
-    WHERE "id" = $1
-  GROUP BY "friends".name, "events".event_name, "events".event_date
-   ORDER BY "friends".name
+    SELECT 
+        "friends"."name",
+        "events"."event_name",
+        "events"."event_date",
+        "gifts"."idea"
+    FROM "friends" 
+        LEFT JOIN "events"
+            ON "friends"."id"="events"."freind_id"
+        LEFT JOIN "gifts"
+            ON "friends"."id"="gifts"."friend_id"
+        WHERE "id" = $1;
     `
     const sqlValues =
         req.params.id;
@@ -108,12 +70,50 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         .then((dbRes) => {
             console.log('************')
             console.log(dbRes.rows)
-            res.send(dbRes.rows);
+            let friendDetails = {}
+            friendDetails.name = dbRes.rows[0].name;
+            friendDetails.event = dbRes.rows.map((row) => {
+                return row.event_name
+            })
+            friendDetails.date = dbRes.rows.map((row) => {
+                return row.event_date
+            })
+            friendDetails.ideas = dbRes.rows.map((row) => {
+                return row.idea
+            })
+            console.log('DETAILS', friendDetails)
+            res.send(friendDetails);
         })
         .catch((dbErr) => {
             console.error(dbErr);
         })
 })
+
+// router.get('/:id', rejectUnauthenticated, (req, res) => {
+//     console.log('req id', req.params.id)
+//     const sqlQuery = `
+//     SELECT json_build_object('friend',"friends".name, 'name', "events".event_name, 'date', "events".event_date, 'ideas', ARRAY_AGG("gifts".idea)) as obj FROM "friends"
+//     LEFT JOIN "events"
+//         ON "friends"."id"="events"."freind_id"
+//     LEFT JOIN "gifts"
+//         ON "friends"."id"="gifts"."friend_id"
+//     -- Optional if you want to sort via person
+//     WHERE "id" = $1
+//     GROUP BY "friends".name, "events".event_name, "events".event_date
+//     ORDER BY "friends".name
+//     `
+//     const sqlValues =
+//         req.params.id;
+//     pool.query(sqlQuery, [sqlValues])
+//         .then((dbRes) => {
+//             console.log('************')
+//             console.log(dbRes.rows)
+//             res.send(dbRes.rows);
+//         })
+//         .catch((dbErr) => {
+//             console.error(dbErr);
+//         })
+// })
 
 
 // ,

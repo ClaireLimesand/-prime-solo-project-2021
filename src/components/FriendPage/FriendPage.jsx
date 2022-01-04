@@ -7,6 +7,7 @@ import useReduxStore from '../../hooks/useReduxStore';
 import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 function FriendPage() {
 
@@ -23,22 +24,43 @@ function FriendPage() {
         })
     }, [params.id]);
 
+    const goToEventPage= (friend) => {
+        history.push(`/addevent`);
+    }
+    
+
     return (
     <div>
         <h3>{detailsReducer.name}</h3>
+        <Button
+            type="button"
+            onClick={() => {
+            history.push('/addevent');
+        }}
+        >
+            Add an event for {detailsReducer.name}
+        </Button>
         <h5>{detailsReducer.name}'s events:</h5>
-        <ul>
+        {/* <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
                 {detailsReducer.date && detailsReducer.date.map((date) => {
                     return <li>{event} on {date}</li>
                 })}
             })}
-        </ul>
-        {/* <ul>
+        </ul> */}
+        <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
                     return <li>{event}</li>
             })}
-        </ul> */}
+        </ul>
+        <Button
+            type="button"
+            onClick={() => {
+            history.push('/addgift');
+        }}
+        >
+            Add a gift idea for {detailsReducer.name}
+        </Button>
         <h5>You thought {detailsReducer.name} might like: </h5>
         <ul>
             {detailsReducer.ideas && detailsReducer.ideas.map((idea) => {

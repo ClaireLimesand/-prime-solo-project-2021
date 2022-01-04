@@ -15,12 +15,13 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import FriendForm from '../FriendForm/FriendForm';
 import FriendPage from '../FriendPage/FriendPage';
+import EventForm from '../EventForm/EventForm';
+import GiftForm from '../GiftForm/GiftForm';
 
 import './App.css';
 
@@ -79,11 +80,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // takes user to the add event form
             exact
-            path="/info"
+            path="/addevent"
           >
-            <InfoPage />
+            <EventForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // takes user to the add gift form 
+            exact
+            path="/addgift"
+          >
+            <GiftForm />
           </ProtectedRoute>
 
           <Route
