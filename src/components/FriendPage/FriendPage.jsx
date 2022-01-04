@@ -21,11 +21,17 @@ function FriendPage() {
             type: 'FETCH_FRIEND_DETAILS',
             payload: params.id
         })
-    }, []);
+    }, [params.id]);
 
     return (
     <div>
-        <p>{detailsReducer.name}</p>
+        <h3>{detailsReducer.name}</h3>
+        <h5>{detailsReducer.name}'s events</h5>
+        {/* <ul>
+            {detailsReducer.event.map((event) => {
+                return <li>{event}</li>
+            })}
+        </ul> */}
     </div>
     );
 }

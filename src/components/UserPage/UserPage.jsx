@@ -20,10 +20,10 @@ function UserPage() {
 
   const goToFriend = (friend) => {
     console.log('going to friend page')
-    dispatch ({
-        type:'FETCH_FREIND_DETAILS',
-        payload: friend.id
-    });
+    // dispatch ({
+    //     type:'FETCH_FREIND_DETAILS',
+    //     payload: friend.id
+    // });
     history.push(`/friendpage/${friend.id}`);
 }
 
