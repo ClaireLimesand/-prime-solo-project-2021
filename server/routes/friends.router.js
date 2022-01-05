@@ -27,7 +27,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // POST to add a new friend 
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('in POST friends server', req.user);
     const newFriend = req.body;
 
@@ -84,12 +84,17 @@ pool.query (sqlQuery, [sqlValues])
                     return row.idea
                 })
                 console.log(friendDetails)
-            res.send(friendDetails)
-
+                res.send(friendDetails)
             })
-            // catch for dbRes2
+            .catch((dbErr) => {
+                console.error('GET details error 2', dbErr);
+                res.sendStatus(500);
+                })
     })
-// catch for dbRes1
+    .catch((dbErr) => {
+        console.error('GET details error 2', dbErr);
+        res.sendStatus(500);
+        })
 })
 
 module.exports = router;

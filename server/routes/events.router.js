@@ -31,5 +31,22 @@ const {
             })
     });
 
+    // router.put(‘/’, rejectUnauthenticated, (req, res) => {
+    //     const sqlText =`
+    //     UPDATE “events”
+    //     SET “coins” = $1
+    //     WHERE “id” = $2;
+    //     `
+    //     const sqlValues = [
+    //         req.body.coins,
+    //         req.user.id,
+    //     ]
+    //     pool.query(sqlText, sqlValues)
+    //         .then((dbRes) => res.sendStatus(201))
+    //         .catch((dbErr) => {
+    //             console.log(‘PUT events error’, dbErr);
+    //             res.sendStatus(500)
+    //     })
+    // });
     
     module.exports = router;
