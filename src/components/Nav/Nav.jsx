@@ -28,17 +28,11 @@ function Nav() {
               Your Friends
             </Link>
 
-            <Link className="navLink" to="/addfriend">
-              Add A Friend
-            </Link>
 
             <LogOutButton className="navLink" />
           </>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );

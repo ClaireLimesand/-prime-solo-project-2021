@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import useReduxStore from '../../hooks/useReduxStore';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 function FriendForm() {
 
@@ -23,10 +23,10 @@ function FriendForm() {
         if (
             friendName === ''
         ) {
-            // swal({
-            //     title: "Hey wait,",
-            //     text: "your friend needs a name!",
-            // });
+            Swal.fire({
+                title: "Hey, wait!",
+                text: "Your friend needs a name.",
+            });
         } else {
             dispatch({
                 type: 'ADD_FRIEND',
@@ -41,6 +41,7 @@ function FriendForm() {
         <p>Add your friend here:</p>
             <TextField 
                 type="text"
+                label="Your Freind's Name"
                 value={friendName}
                 onChange={(event) => setFriendName(event.target.value)}
                 required
