@@ -50,115 +50,46 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    console.log('req id', req.params.id)
-    const sqlQuery = `
-    SELECT 
-        "friends"."name",
-        "events"."event_name",
-        "events"."event_date",
-        "gifts"."idea"
-    FROM "friends" 
-        LEFT JOIN "events"
-            ON "friends"."id"="events"."freind_id"
-        LEFT JOIN "gifts"
-            ON "friends"."id"="gifts"."friend_id"
-        WHERE "id" = $1;
-    `
-    const sqlValues =
-        req.params.id;
-    pool.query(sqlQuery, [sqlValues])
-        .then((dbRes) => {
-            console.log('************')
-            console.log(dbRes.rows)
-            let friendDetails = {}
-            friendDetails.name = dbRes.rows[0].name;
-            friendDetails.event = dbRes.rows.map((row) => {
-                return row.event_name
+// left join query for events
+const sqlQuery = `
+SELECT 
+    "friends"."name",
+    "events"."event_name",
+    "events"."event_date"
+FROM "friends" 
+    LEFT JOIN "events"
+    ON "friends"."id"="events"."freind_id"
+WHERE "friends"."id" = $1;
+` 
+const sqlValues = req.params.id;
+pool.query (sqlQuery, [sqlValues])
+    .then((dbRes1) => {
+        let friendDetails = {
+            name: dbRes1.rows[0].name,
+            event: dbRes1.rows.map((row) => {
+                return {
+                    name: row.event_name,
+                    date: row.event_date
+                }
             })
-            friendDetails.date = dbRes.rows.map((row) => {
-                return row.event_date
+        }
+        const giftsQuery = `
+        SELECT "gifts"."idea"
+        FROM "gifts"
+        WHERE "friend_id" = $1;
+        `
+        pool.query (giftsQuery, [sqlValues])
+            .then((dbRes2) => {
+                friendDetails.gifts = dbRes2.rows.map((row) => {
+                    return row.idea
+                })
+                console.log(friendDetails)
+            res.send(friendDetails)
+
             })
-            friendDetails.ideas = dbRes.rows.map((row) => {
-                return row.idea
-            })
-            console.log('DETAILS', friendDetails)
-            res.send(friendDetails);
-        })
-        .catch((dbErr) => {
-            console.error(dbErr);
-        })
+            // catch for dbRes2
+    })
+// catch for dbRes1
 })
-
-// router.get('/:id', rejectUnauthenticated, (req, res) => {
-//     console.log('req id', req.params.id)
-//     const sqlQuery = `
-//     SELECT json_build_object('friend',"friends".name, 'name', "events".event_name, 'date', "events".event_date, 'ideas', ARRAY_AGG("gifts".idea)) as obj FROM "friends"
-//     LEFT JOIN "events"
-//         ON "friends"."id"="events"."freind_id"
-//     LEFT JOIN "gifts"
-//         ON "friends"."id"="gifts"."friend_id"
-//     -- Optional if you want to sort via person
-//     WHERE "id" = $1
-//     GROUP BY "friends".name, "events".event_name, "events".event_date
-//     ORDER BY "friends".name
-//     `
-//     const sqlValues =
-//         req.params.id;
-//     pool.query(sqlQuery, [sqlValues])
-//         .then((dbRes) => {
-//             console.log('************')
-//             console.log(dbRes.rows)
-//             res.send(dbRes.rows);
-//         })
-//         .catch((dbErr) => {
-//             console.error(dbErr);
-//         })
-// })
-
-
-// ,
-// router.get('/:id', rejectUnauthenticated, (req, res) => {
-//     console.log('req id', req.params.id)
-//     let friendDetails = {}
-//     const friendsEventsQuery = `
-//     SELECT 
-//         "friends"."name",
-//         "events"."event_name",
-//         "events"."event_date"
-//     FROM "friends" 
-//         LEFT JOIN "events"
-//             ON "friends"."id"="events"."freind_id"
-//         WHERE "id" = $1;
-//     `
-//     pool.query(friendsEventsQuery, [friendsEventsValues])
-//         .then((friendsEventsRes) => {
-//             friendDetails.name = friendsEventsRes.rows[0].name
-//             friendDetails.event = friendsEventsRes.rows.map((row) => {
-//                 return row.event_name
-//             })
-//             friendDetails.date = friendsEventsRes.rows.map((row) => {
-//                 return row.event_date
-//             })
-
-//     const giftsQuery = `
-//     SELECT 
-//         "gifts"."idea"
-//     FROM "friends" 
-//         LEFT JOIN "gifts"
-//             ON "friends"."id"="gifts"."friend_id"
-//         WHERE "id" = $1;
-//     `
-//     const sqlValues = req.params.id;
-//     pool.query(giftsQuery, giftsValues)
-//         .then((giftsRes) => {
-//             friendDetails.ideas = giftsRes.rows.map((row) => {
-//                 return row.idea
-//             })
-//             res.send(friendDetails)
-//         })
-//         .catch((dbErr) => {
-//             console.error(dbErr);
-//         })
-// })
 
 module.exports = router;

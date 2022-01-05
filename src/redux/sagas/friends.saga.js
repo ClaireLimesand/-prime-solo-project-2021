@@ -5,7 +5,10 @@ function* fetchFriends() {
     try {
         console.log('in fetchFriends')
         const friends = yield axios.get('/api/friends');
-        yield put({ type: 'SET_FRIENDS', payload: friends.data });
+        yield put({ 
+            type: 'SET_FRIENDS', 
+            payload: friends.data 
+        });
     } catch (error) {
         console.log('fetchFriends error', error);
     }

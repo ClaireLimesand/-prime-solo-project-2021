@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useDispatch, useSelector} from 'react-redux';
 import useReduxStore from '../../hooks/useReduxStore';
+import Button from '@mui/material/Button';
 
 function UserPage() {
 
@@ -19,13 +20,8 @@ function UserPage() {
   }, []);
 
   const goToFriend = (friend) => {
-    console.log('going to friend page')
-    // dispatch ({
-    //     type:'FETCH_FREIND_DETAILS',
-    //     payload: friend.id
-    // });
     history.push(`/friendpage/${friend.id}`);
-}
+} 
 
   return (
     <div className="container">
@@ -38,6 +34,7 @@ function UserPage() {
           </tr>
         ))}
       </tbody>
+      <Button onClick={() => history.push('/addfriend')}>Add a Friend</Button>
       <LogOutButton className="btn" />
     </div>
   );

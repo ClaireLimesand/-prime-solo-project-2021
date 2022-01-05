@@ -23,47 +23,52 @@ function FriendPage() {
             payload: params.id
         })
     }, [params.id]);
-
-    const goToEventPage= (friend) => {
-        history.push(`/addevent`);
-    }
+    console.log('details events***', detailsReducer.event)
     
-
+    // const eventDisplay = () => {
+    //     if (detailsReducer.event === "") {
+    //         return (
+    //             <div>
+    //                 <p>{detailsReducer.name} doesn't have any events</p>
+    //             </div>
+    //         )
+    //     } else {
+    //         return (
+    //             {detailsReducer.event && detailsReducer.event.map((event) => {
+    //                 return <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
+    //         })}
+    //         )
+    //     }
+    // }
+    
     return (
     <div>
         <h3>{detailsReducer.name}</h3>
         <Button
             type="button"
             onClick={() => {
-            history.push('/addevent');
+            history.push(`${params.id}/addevent`);
         }}
         >
             Add an event for {detailsReducer.name}
         </Button>
-        <h5>{detailsReducer.name}'s events:</h5>
-        {/* <ul>
-            {detailsReducer.event && detailsReducer.event.map((event) => {
-                {detailsReducer.date && detailsReducer.date.map((date) => {
-                    return <li>{event} on {date}</li>
-                })}
-            })}
-        </ul> */}
+        {/* <h5>{detailsReducer.name}'s events:</h5> */}    
         <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
-                    return <li>{event}</li>
+                    return <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
             })}
         </ul>
         <Button
             type="button"
             onClick={() => {
-            history.push('/addgift');
+            history.push(`${params.id}/addgift`);
         }}
         >
             Add a gift idea for {detailsReducer.name}
         </Button>
         <h5>You thought {detailsReducer.name} might like: </h5>
         <ul>
-            {detailsReducer.ideas && detailsReducer.ideas.map((idea) => {
+            {detailsReducer.gifts && detailsReducer.gifts.map((idea) => {
                 return <li>{idea}</li>
             })}
         </ul>
