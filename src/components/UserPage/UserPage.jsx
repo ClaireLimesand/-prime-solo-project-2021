@@ -36,6 +36,7 @@ function UserPage() {
       </tbody>
       <Button onClick={() => history.push('/addfriend')}>Add a Friend</Button>
       <LogOutButton className="btn" />
+      <p>HELLOOOOO</p>
     </div>
   );
 }
