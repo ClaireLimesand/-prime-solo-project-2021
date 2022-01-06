@@ -7,6 +7,7 @@ import useReduxStore from '../../hooks/useReduxStore';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
+import BottomNav from '../BottomNav/BottomNav';
 
 function FriendForm() {
 
@@ -52,6 +53,8 @@ function FriendForm() {
             >
                 Add This Friend
             </Button>
+    
+    < BottomNav />
     </div>
     );
 }

@@ -13,7 +13,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     
     const sqlQuery = `
         SELECT * FROM "friends"
-        WHERE "user_id"=$1;
+        WHERE "user_id"=$1
+        ORDER BY "name" ASC;
     `;
     const sqlValues = [req.user.id];
     pool.query(sqlQuery, sqlValues)
