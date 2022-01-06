@@ -5,14 +5,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import useReduxStore from '../../hooks/useReduxStore';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import { Card } from '@mui/material';
 import { CardHeader } from '@mui/material';
 import { CardContent } from '@mui/material';
 import { Divider } from '@mui/material';
-
+import MuiButton from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import BottomNav from '../BottomNav/BottomNav';
 
 function UserPage() {
 
+  const Button = styled(MuiButton)(spacing);
   const history = useHistory();
   const dispatch = useDispatch();
   const store = useReduxStore();
@@ -61,15 +66,19 @@ function UserPage() {
         }
       </Grid>
       
-      <Button  
-        variant="contained" 
-        onClick={() => history.push('/addfriend')}>
-        Add a Friend
-      </Button>
-      
-      <div>
+      {/* <Box textAlign="center">
+        <Button  
+          variant="contained" 
+          onClick={() => history.push('/addfriend')}>
+          Add a Friend
+        </Button>
+      </Box> */}
+
+      <Box textAlign="center"> 
         <LogOutButton className="btn" />
-      </div>
+      </Box>
+
+      <BottomNav />
     </div>
   );
 }

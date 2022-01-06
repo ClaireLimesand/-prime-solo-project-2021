@@ -13,7 +13,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     
     const sqlQuery = `
         SELECT * FROM "friends"
-        WHERE "user_id"=$1;
+        WHERE "user_id"=$1
+        ORDER BY "name" ASC;
     `;
     const sqlValues = [req.user.id];
     pool.query(sqlQuery, sqlValues)
@@ -55,7 +56,8 @@ const sqlQuery = `
 SELECT 
     "friends"."name",
     "events"."event_name",
-    "events"."event_date"
+    "events"."event_date",
+    "events"."event_id"
 FROM "friends" 
     LEFT JOIN "events"
     ON "friends"."id"="events"."freind_id"
@@ -69,7 +71,8 @@ pool.query (sqlQuery, [sqlValues])
             event: dbRes1.rows.map((row) => {
                 return {
                     name: row.event_name,
-                    date: row.event_date
+                    date: row.event_date,
+                    event_id: row.event_id
                 }
             })
         }

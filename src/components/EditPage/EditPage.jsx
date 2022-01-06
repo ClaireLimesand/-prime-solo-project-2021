@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import BottomNav from '../BottomNav/BottomNav';
 
 function EditPage() {
 
@@ -24,8 +25,15 @@ function EditPage() {
         })
     }, [params.id]);
 
-    const deleteGift = () => {
-        console.log('what now?')
+    const handleDeleteEvent = (id) => {
+        dispatch({
+            type: 'DELETE_EVENT',
+            payload: id
+        })
+    }
+
+    const handleDeleteGift = (id) => {
+        console.log('what now?', id)
     }
     
     return (
@@ -34,24 +42,27 @@ function EditPage() {
             
         <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
-                    return <div>
+                    return (
+                        <div>
                             <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
-                            <Button variant="contained">Delete</Button>
+                            <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
                             <Button variant="contained">Edit</Button>
                         </div>
-            })}
+            )})}
         </ul>
         
         <h4>{detailsReducer.name}'s gifts:</h4>
-        <ul>
-            {detailsReducer.gifts && detailsReducer.gifts.map((idea) => {
-                return <div>
-                        <p>{idea}</p>
-                        <Button variant="contained" onClick={deleteGift}>Delete</Button>
-                        <Button variant="contained">Edit</Button>
-                    </div>
-            })}
-        </ul>
+        
+        {detailsReducer.gifts && detailsReducer.gifts.map((idea) => {
+            return (
+                <div>
+                    <p>{idea}</p>
+                    <Button variant="contained">Delete</Button>
+                    <Button variant="contained">Edit</Button>
+                </div>
+            )})}
+
+        < BottomNav />
     </div>
     );
 }

@@ -7,10 +7,16 @@ import useReduxStore from '../../hooks/useReduxStore';
 import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
+import MuiButton from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import BottomNav from '../BottomNav/BottomNav';
 
 function FriendPage() {
 
+    const Button = styled(MuiButton)(spacing);
     const history = useHistory();
     const dispatch = useDispatch();
     const params = useParams();
@@ -45,15 +51,17 @@ function FriendPage() {
     <div>
         <h3>{detailsReducer.name}</h3>
         
-        <Button
-            variant="contained"
-            type="button"
-            onClick={() => {
-            history.push(`${params.id}/addevent`);
-        }}
-        >
-            Add an event for {detailsReducer.name}
-        </Button>
+        <Box textAlign="center">
+            <Button
+                variant="contained"
+                type="button"
+                onClick={() => {
+                history.push(`${params.id}/addevent`);
+            }}
+            >
+                Add an event for {detailsReducer.name}
+            </Button>
+        </Box>
 
         <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
@@ -61,15 +69,17 @@ function FriendPage() {
             })}
         </ul>
         
-        <Button
-            variant="contained"
-            type="button"
-            onClick={() => {
-            history.push(`${params.id}/addgift`);
-        }}
-        >
-            Add a gift idea for {detailsReducer.name}
-        </Button>
+        <Box textAlign="center">
+            <Button
+                variant="contained"
+                type="button"
+                onClick={() => {
+                history.push(`${params.id}/addgift`);
+            }}
+            >
+                Add a gift idea for {detailsReducer.name}
+            </Button>
+        </Box>
         
         <h5>You thought {detailsReducer.name} might like: </h5>
         <ul>
@@ -78,15 +88,19 @@ function FriendPage() {
             })}
         </ul>
         
-        <Button
-            variant="contained"
-            type="button"
-            onClick={() => {
-            history.push(`${params.id}/edit`);
-        }}
-        >
-            Edit This Friend
-        </Button>
+        <Box textAlign="center">
+            <Button
+                variant="contained"
+                type="button"
+                onClick={() => {
+                history.push(`${params.id}/edit`);
+            }}
+            >
+                Edit This Friend
+            </Button>
+        </Box>
+
+        <BottomNav />
     </div>
     );
 }
