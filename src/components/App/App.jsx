@@ -21,6 +21,7 @@ import FriendForm from '../FriendForm/FriendForm';
 import FriendPage from '../FriendPage/FriendPage';
 import EventForm from '../EventForm/EventForm';
 import GiftForm from '../GiftForm/GiftForm';
+import EditPage from '../EditPage/EditPage'
 
 import './App.css';
 
@@ -86,6 +87,14 @@ function App() {
             path="/friendpage/:id/addgift"
           >
             <GiftForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // takes user to the edit page
+            exact
+            path="/friendpage/:id/edit"
+          >
+            <EditPage />
           </ProtectedRoute>
 
           <Route

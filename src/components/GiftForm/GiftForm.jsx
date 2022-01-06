@@ -52,10 +52,18 @@ function GiftForm() {
                 required
             />
             <Button
+                variant="contained"
                 id="saveButton"
                 onClick={handleSaveButton}
             >
             Add This Gift
+            </Button>
+            <Button
+                variant="contained"
+                id="saveButton"
+                onClick={() => history.push(`/friendpage/${params.id}`)}
+            >
+            Back
             </Button>
         </div>
     );

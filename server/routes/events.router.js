@@ -5,7 +5,7 @@ const {
     rejectUnauthenticated,
     } = require('../modules/authentication-middleware');
 
-    // POST to add a new gift 
+    // POST to add a new event 
 
     router.post('/', rejectUnauthenticated, (req, res) => {
         console.log('in POST events server', req.user);
