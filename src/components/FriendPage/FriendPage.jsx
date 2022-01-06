@@ -44,7 +44,9 @@ function FriendPage() {
     return (
     <div>
         <h3>{detailsReducer.name}</h3>
+        
         <Button
+            variant="contained"
             type="button"
             onClick={() => {
             history.push(`${params.id}/addevent`);
@@ -52,13 +54,15 @@ function FriendPage() {
         >
             Add an event for {detailsReducer.name}
         </Button>
-        {/* <h5>{detailsReducer.name}'s events:</h5> */}    
+
         <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
                     return <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
             })}
         </ul>
+        
         <Button
+            variant="contained"
             type="button"
             onClick={() => {
             history.push(`${params.id}/addgift`);
@@ -66,12 +70,23 @@ function FriendPage() {
         >
             Add a gift idea for {detailsReducer.name}
         </Button>
+        
         <h5>You thought {detailsReducer.name} might like: </h5>
         <ul>
             {detailsReducer.gifts && detailsReducer.gifts.map((idea) => {
-                return <li>{idea}</li>
+                return <p>{idea}</p>
             })}
         </ul>
+        
+        <Button
+            variant="contained"
+            type="button"
+            onClick={() => {
+            history.push(`${params.id}/edit`);
+        }}
+        >
+            Edit This Friend
+        </Button>
     </div>
     );
 }

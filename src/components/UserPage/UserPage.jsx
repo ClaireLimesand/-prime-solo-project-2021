@@ -4,6 +4,12 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useDispatch, useSelector} from 'react-redux';
 import useReduxStore from '../../hooks/useReduxStore';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import { Card } from '@mui/material';
+import { CardHeader } from '@mui/material';
+import { CardContent } from '@mui/material';
+import { Divider } from '@mui/material';
+
 
 function UserPage() {
 
@@ -26,17 +32,44 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <tbody>
+      
+      {/* <tbody>
         {store.friendsReducer.map((friend, index) => (
           <tr key={index}>
             <td onClick={()=>{goToFriend(friend)}}>{friend.name}</td>
           </tr>
         ))}
-      </tbody>
-      <Button onClick={() => history.push('/addfriend')}>Add a Friend</Button>
-      <LogOutButton className="btn" />
-      <p>HELLOOOOO</p>
+      </tbody> */}
+      
+      <Grid container 
+            spacing={2}
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="stretch">
+      {
+      store.friendsReducer.map(friend => (
+        <Grid item xs={6}>
+          <Card className={"friendCard"} onClick={()=>{goToFriend(friend)}}>
+            <CardContent className={"MuiCardContent-root"}>
+              <Grid container justify="space-evenly">
+                <label>{friend.name}</label>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+          ))
+        }
+      </Grid>
+      
+      <Button  
+        variant="contained" 
+        onClick={() => history.push('/addfriend')}>
+        Add a Friend
+      </Button>
+      
+      <div>
+        <LogOutButton className="btn" />
+      </div>
     </div>
   );
 }

@@ -78,12 +78,21 @@ function EventForm() {
         </Stack>
       </LocalizationProvider>
       <Button
+          variant="contained"
           id="saveButton"
           onClick={handleSaveButton}
       >
       Add This Event
       </Button>
-      
+      <div>
+        <Button
+            variant="contained"
+            id="saveButton"
+            onClick={() => history.push(`/friendpage/${params.id}`)}
+        >
+        Back
+        </Button>
+      </div>
     </div>
   );
 }
