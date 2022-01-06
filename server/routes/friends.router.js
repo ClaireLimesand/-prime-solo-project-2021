@@ -56,7 +56,8 @@ const sqlQuery = `
 SELECT 
     "friends"."name",
     "events"."event_name",
-    "events"."event_date"
+    "events"."event_date",
+    "events"."event_id"
 FROM "friends" 
     LEFT JOIN "events"
     ON "friends"."id"="events"."freind_id"
@@ -70,7 +71,8 @@ pool.query (sqlQuery, [sqlValues])
             event: dbRes1.rows.map((row) => {
                 return {
                     name: row.event_name,
-                    date: row.event_date
+                    date: row.event_date,
+                    event_id: row.event_id
                 }
             })
         }
