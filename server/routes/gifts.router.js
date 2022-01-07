@@ -30,5 +30,27 @@ const {
             })
     });
 
+    router.delete('/:id', rejectUnauthenticated, (req, res) => {
+        console.log('in deleteGift server', req.params.id)
+
+        const sqlQuery = `
+        DELETE FROM "gifts" 
+            WHERE "gift_id"=$1;
+        `;
+
+        const sqlValues = [
+            req.params.id
+        ]
+
+        pool.query(sqlQuery, sqlValues)
+            .then((dbRes) => {
+                res.sendStatus(201);
+            })
+            .catch((dbErr) => {
+                console.error('DELETE events error', dbErr);
+                res.sendStatus(500);
+            })
+    });
+
     
     module.exports = router;

@@ -9,16 +9,29 @@ function* addGift(action) {
             url: '/api/gifts',
             data: action.payload
         })
-        // yield put({
-        //     type: 'FETCH_FRIEND_DETAILS'
-        // })
     } catch (error) {
         console.log('addFriend error', error);
     }
 }
 
+function* deleteGift(action) {
+    console.log('deleteGift action payload', action.payload)
+    try {
+        const response = yield axios({
+            method: 'DELETE',
+            url: `/api/gifts/${action.payload}`,
+    })
+    yield put({
+        type: 'FETCH_FRIENDS'
+    })
+    } catch (error) {
+        console.log('deleteGift error', error);
+    }
+}
+
 function* giftsSaga() {
     yield takeEvery('ADD_GIFT', addGift);
+    yield takeEvery('DELETE_GIFT', deleteGift);
 }
 
 export default giftsSaga;

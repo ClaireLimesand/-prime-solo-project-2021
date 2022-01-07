@@ -33,7 +33,11 @@ function EditPage() {
     }
 
     const handleDeleteGift = (id) => {
-        console.log('what now?', id)
+        console.log('HEY!', id)
+        dispatch({
+            type: 'DELETE_GIFT',
+            payload: id
+        })
     }
     
     return (
@@ -53,11 +57,11 @@ function EditPage() {
         
         <h4>{detailsReducer.name}'s gifts:</h4>
         
-        {detailsReducer.gifts && detailsReducer.gifts.map((idea) => {
+        {detailsReducer.gifts && detailsReducer.gifts.map((gift) => {
             return (
                 <div>
-                    <p>{idea}</p>
-                    <Button variant="contained">Delete</Button>
+                    <p>{gift.idea}</p>
+                    <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
                     <Button variant="contained">Edit</Button>
                 </div>
             )})}

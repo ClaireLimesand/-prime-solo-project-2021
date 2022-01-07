@@ -21,32 +21,38 @@ const {
             newEvent.date,
             newEvent.friend_id
         ]
+        
         pool.query(sqlQuery, sqlValues)
             .then((dbRes) => {
-            res.sendStatus(201);
+                res.sendStatus(201);
             })
             .catch((dbErr) => {
-            console.error('POST events error', dbErr);
-            res.sendStatus(500);
+                console.error('POST events error', dbErr);
+                res.sendStatus(500);
             })
     });
 
-    // router.put(‘/’, rejectUnauthenticated, (req, res) => {
-    //     const sqlText =`
-    //     UPDATE “events”
-    //     SET “coins” = $1
-    //     WHERE “id” = $2;
-    //     `
-    //     const sqlValues = [
-    //         req.body.coins,
-    //         req.user.id,
-    //     ]
-    //     pool.query(sqlText, sqlValues)
-    //         .then((dbRes) => res.sendStatus(201))
-    //         .catch((dbErr) => {
-    //             console.log(‘PUT events error’, dbErr);
-    //             res.sendStatus(500)
-    //     })
-    // });
+    router.delete('/:id', rejectUnauthenticated, (req, res) => {
+        console.log('in deleteEvent server', req.params.id)
+
+        const sqlQuery = `
+        DELETE FROM "events" 
+            WHERE "event_id"=$1;
+        `;
+
+        const sqlValues = [
+            req.params.id
+        ]
+
+        pool.query(sqlQuery, sqlValues)
+            .then((dbRes) => {
+                res.sendStatus(201);
+            })
+            .catch((dbErr) => {
+                console.error('DELETE events error', dbErr);
+                res.sendStatus(500);
+            })
+    });
+
     
     module.exports = router;
