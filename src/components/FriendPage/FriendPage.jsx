@@ -31,53 +31,24 @@ function FriendPage() {
     }, [params.id]);
     console.log('details events***', detailsReducer.event)
     
-    // const eventDisplay = () => {
-    //     if (detailsReducer.event === "") {
-    //         return (
-    //             <div>
-    //                 <p>{detailsReducer.name} doesn't have any events</p>
-    //             </div>
-    //         )
-    //     } else {
-    //         return (
-    //             {detailsReducer.event && detailsReducer.event.map((event) => {
-    //                 return <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
-    //         })}
-    //         )
-    //     }
-    // }
-    
     return (
     <div>
         <h3>{detailsReducer.name}</h3>
-        
-        <Box textAlign="center">
-            <Button
-                variant="contained"
-                type="button"
-                onClick={() => {
-                history.push(`${params.id}/addevent`);
-            }}
-            >
-                Add an event for {detailsReducer.name}
-            </Button>
-        </Box>
 
         <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
                     return <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
             })}
         </ul>
-        
-        <Box textAlign="center">
+
+        <Box textAlign="center" textAlign="center" m={1} pt={2}>
             <Button
                 variant="contained"
                 type="button"
                 onClick={() => {
-                history.push(`${params.id}/addgift`);
-            }}
-            >
-                Add a gift idea for {detailsReducer.name}
+                history.push(`${params.id}/addevent`);
+            }}>
+                Add an event for {detailsReducer.name}
             </Button>
         </Box>
         
@@ -87,8 +58,19 @@ function FriendPage() {
                 return <p>{gifts.idea}</p>
             })}
         </ul>
+
+        <Box textAlign="center" m={1} pt={2}>
+            <Button
+                variant="contained"
+                type="button"
+                onClick={() => {
+                history.push(`${params.id}/addgift`);
+            }}>
+                Add a gift idea for {detailsReducer.name}
+            </Button>
+        </Box>
         
-        <Box textAlign="center">
+        <Box textAlign="center" m={1} pt={2}>
             <Button
                 variant="contained"
                 type="button"
