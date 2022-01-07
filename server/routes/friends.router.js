@@ -50,13 +50,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// "events"."event_date",
 router.get('/:id', rejectUnauthenticated, (req, res) => {
 // left join query for events
 const sqlQuery = `
 SELECT 
     "friends"."name",
     "events"."event_name",
-    "events"."event_date",
+    TO_CHAR("event_date",'MM-DD-YYYY') AS "event_date", 
     "events"."event_id"
 FROM "friends" 
     LEFT JOIN "events"

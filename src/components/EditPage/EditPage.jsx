@@ -9,9 +9,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import BottomNav from '../BottomNav/BottomNav';
+import MuiButton from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
 
 function EditPage() {
 
+    const Button = styled(MuiButton)(spacing);
     const history = useHistory();
     const dispatch = useDispatch();
     const params = useParams();
@@ -65,6 +69,15 @@ function EditPage() {
                     <Button variant="contained">Edit</Button>
                 </div>
             )})}
+
+        <div>
+            <Button
+                variant="contained"
+                id="saveButton"
+                onClick={() => history.push(`/friendpage/${params.id}`)}>
+                    Back
+            </Button>
+        </div>
 
         < BottomNav />
     </div>

@@ -7,10 +7,15 @@ import useReduxStore from '../../hooks/useReduxStore';
 import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Swal from 'sweetalert2';
+import MuiButton from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
 
 function GiftForm() {
 
+    const Button = styled(MuiButton)(spacing);
     const history = useHistory();
     const dispatch = useDispatch();
     const params = useParams();
@@ -44,27 +49,32 @@ function GiftForm() {
     return (
         <div className="container">
             <p>Add Gift Page</p>
-            <TextField 
-                type="text"
-                label="gift"
-                value={gift}
-                onChange={(event) => setGift(event.target.value)}
-                required
-            />
-            <Button
-                variant="contained"
-                id="saveButton"
-                onClick={handleSaveButton}
-            >
-            Add This Gift
-            </Button>
-            <Button
-                variant="contained"
-                id="saveButton"
-                onClick={() => history.push(`/friendpage/${params.id}`)}
-            >
-            Back
-            </Button>
+            <Box textAlign="center" textAlign="center" m={1} pt={2}>
+                <TextField 
+                    type="text"
+                    label="gift"
+                    variant="standard"
+                    value={gift}
+                    onChange={(event) => setGift(event.target.value)}
+                    required
+                />
+                
+                <Button
+                    variant="contained"
+                    id="saveButton"
+                    onClick={handleSaveButton}>
+                Add This Gift
+                </Button>
+            </Box>
+            
+            <Box textAlign="center" textAlign="center" m={1} pt={2}>
+                <Button
+                    variant="contained"
+                    id="saveButton"
+                    onClick={() => history.push(`/friendpage/${params.id}`)}>
+                Back
+                </Button>
+            </Box>
         </div>
     );
 }

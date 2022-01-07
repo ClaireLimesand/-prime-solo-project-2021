@@ -8,9 +8,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
 import BottomNav from '../BottomNav/BottomNav';
+import MuiButton from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
 
 function FriendForm() {
 
+    const Button = styled(MuiButton)(spacing);
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -43,11 +47,13 @@ function FriendForm() {
             <TextField 
                 type="text"
                 label="Your Freind's Name"
+                variant="standard"
                 value={friendName}
                 onChange={(event) => setFriendName(event.target.value)}
                 required
             />
             <Button
+                variant="contained"
                 id="saveButton"
                 onClick={handleSaveButton}
             >

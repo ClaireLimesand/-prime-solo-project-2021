@@ -7,6 +7,7 @@ import useReduxStore from '../../hooks/useReduxStore';
 import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Swal from 'sweetalert2';
 import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -15,9 +16,13 @@ import TimePicker from '@mui/lab/TimePicker';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import MuiButton from "@material-ui/core/Button";
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
 
 function EventForm() {
 
+  const Button = styled(MuiButton)(spacing);
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
@@ -59,17 +64,19 @@ function EventForm() {
   return (
     <div className="container">
       <p>Add Event Page</p>
-      <TextField 
-        type="text"
-        label="event name"
-        value={event}
-        onChange={(event) => setEvent(event.target.value)}
-        required
-      />
+      <Box m={1} pt={2}>
+        <TextField 
+          type="text"
+          label="Event name"
+          value={event}
+          onChange={(event) => setEvent(event.target.value)}
+          required
+        />
+      </Box>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Stack spacing={3}>
+        <Stack spacing={2}>
           <MobileDatePicker
-            label="Date mobile"
+            label="Event date"
             inputFormat="MM/dd/yyyy"
             value={date}
             onChange={handleChange}
@@ -77,14 +84,18 @@ function EventForm() {
           />
         </Stack>
       </LocalizationProvider>
-      <Button
-          variant="contained"
-          id="saveButton"
-          onClick={handleSaveButton}
-      >
-      Add This Event
+
+      <Box textAlign="center" m={1} pt={2}>
+        <Button
+            variant="contained"
+            id="saveButton"
+            onClick={handleSaveButton}
+        >
+        Add This Event
       </Button>
-      <div>
+      </Box>
+      
+      <Box textAlign="center" m={1} pt={2}>
         <Button
             variant="contained"
             id="saveButton"
@@ -92,7 +103,7 @@ function EventForm() {
         >
         Back
         </Button>
-      </div>
+      </Box>
     </div>
   );
 }
