@@ -83,8 +83,8 @@ function FriendPage() {
         
         <h5>You thought {detailsReducer.name} might like: </h5>
         <ul>
-            {detailsReducer.gifts && detailsReducer.gifts.map((idea) => {
-                return <p>{idea}</p>
+            {detailsReducer.gifts && detailsReducer.gifts.map((gifts) => {
+                return <p>{gifts.idea}</p>
             })}
         </ul>
         

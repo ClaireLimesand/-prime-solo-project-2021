@@ -19,10 +19,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     const sqlValues = [req.user.id];
     pool.query(sqlQuery, sqlValues)
     .then((dbRes) => {
-    res.send(dbRes.rows);
+        res.send(dbRes.rows);
     })
     .catch((dbErr) => {
-    res.sendStatus(500);
+        res.sendStatus(500);
     })
 });
 
@@ -42,11 +42,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ]
     pool.query(sqlQuery, sqlValues)
         .then((dbRes) => {
-        res.sendStatus(201);
+            res.sendStatus(201);
         })
         .catch((dbErr) => {
-        console.error('POST friends error', dbErr);
-        res.sendStatus(500);
+            console.error('POST friends error', dbErr);
+            res.sendStatus(500);
         })
 });
 
@@ -77,14 +77,19 @@ pool.query (sqlQuery, [sqlValues])
             })
         }
         const giftsQuery = `
-        SELECT "gifts"."idea"
+        SELECT 
+            "gifts"."idea",
+            "gifts"."gift_id"
         FROM "gifts"
         WHERE "friend_id" = $1;
         `
         pool.query (giftsQuery, [sqlValues])
             .then((dbRes2) => {
                 friendDetails.gifts = dbRes2.rows.map((row) => {
-                    return row.idea
+                    return {
+                        idea: row.idea,
+                        gift_id: row.gift_id
+                    }
                 })
                 console.log(friendDetails)
                 res.send(friendDetails)
@@ -92,7 +97,7 @@ pool.query (sqlQuery, [sqlValues])
             .catch((dbErr) => {
                 console.error('GET details error 2', dbErr);
                 res.sendStatus(500);
-                })
+            })
     })
     .catch((dbErr) => {
         console.error('GET details error 2', dbErr);
