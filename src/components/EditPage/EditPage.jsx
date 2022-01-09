@@ -7,6 +7,15 @@ import useReduxStore from '../../hooks/useReduxStore';
 import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Swal from 'sweetalert2';
+import Stack from '@mui/material/Stack';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import TimePicker from '@mui/lab/TimePicker';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { Link } from 'react-router-dom';
 import BottomNav from '../BottomNav/BottomNav';
 import MuiButton from "@material-ui/core/Button";
@@ -20,7 +29,7 @@ function EditPage() {
     const dispatch = useDispatch();
     const params = useParams();
 
-    const detailsReducer = useSelector(store => store.detailsReducer )
+    const detailsReducer = useSelector(store => store.detailsReducer)
 
     useEffect(() => {
         dispatch({
@@ -43,6 +52,14 @@ function EditPage() {
             payload: id
         })
     }
+
+    const handleDateChange = (e) => {
+        console.log('Anything?', e.target.value)
+    };
+
+    const handleNameChange = (e) => {
+        console.log('Anything?', e.target.value)
+    };
     
     return (
     <div>
@@ -52,7 +69,23 @@ function EditPage() {
             {detailsReducer.event && detailsReducer.event.map((event) => {
                     return (
                         <div>
-                            <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
+                            <TextField 
+                                value={event.name}
+                                onChange={(e) => handleNameChange(e.target.value)}
+                                >
+                                    {event.name}
+                            </TextField>
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <Stack spacing={2}>
+                                <MobileDatePicker
+                                    label="Event date"
+                                    inputFormat="MM/dd/yyyy"
+                                    value={event.date}
+                                    onChange={(e) => handleDateChange(e.target.value)}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                                </Stack>
+                            </LocalizationProvider>
                             <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
                             <Button variant="contained">Edit</Button>
                         </div>

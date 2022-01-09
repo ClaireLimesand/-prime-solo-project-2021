@@ -30,6 +30,13 @@ function FriendPage() {
         })
     }, [params.id]);
     console.log('details events***', detailsReducer.event)
+
+    const handleDeleteEvent = (id) => {
+        dispatch({
+            type: 'DELETE_EVENT',
+            payload: id
+        })
+    }
     
     return (
     <div>
@@ -37,7 +44,10 @@ function FriendPage() {
 
         <ul>
             {detailsReducer.event && detailsReducer.event.map((event) => {
-                    return <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
+                    return <div>
+                                <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
+                                {/* <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button> */}
+                            </div>
             })}
         </ul>
 
