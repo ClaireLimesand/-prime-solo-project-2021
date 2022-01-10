@@ -35,8 +35,6 @@ function EventForm() {
   };
 
   const handleSaveButton = () => {
-    console.log('HEY DUMMY!', event)
-    console.log('HEY DUMMY! 2', date)
     console.log('params :)', params.id)
     const newEvent = {
       event: event,
