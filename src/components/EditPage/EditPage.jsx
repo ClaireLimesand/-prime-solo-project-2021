@@ -29,6 +29,7 @@ function EditPage() {
     const dispatch = useDispatch();
     const params = useParams();
 
+    console.log('params!!!!!', params)
     const detailsReducer = useSelector(store => store.detailsReducer)
 
     useEffect(() => {
@@ -53,12 +54,19 @@ function EditPage() {
         })
     }
 
-    const handleDateChange = (e) => {
-        console.log('Anything?', e.target.value)
+    const handleEventNameChange = (event) => {
+        dispatch({
+            type: 'EDIT_EVENT_NAME',
+            payload: event.target.value
+        })
+        // console.log('Anything?', event.target.value)
     };
-
-    const handleNameChange = (e) => {
-        console.log('Anything?', e.target.value)
+    
+    const handleDateChange = (event) => {
+        dispatch({
+            type: 'EDIT_EVENT_DATE',
+            payload: event.target.value
+        })
     };
     
     return (
@@ -70,8 +78,9 @@ function EditPage() {
                     return (
                         <div>
                             <TextField 
-                                value={event.name}
-                                onChange={(e) => handleNameChange(e.target.value)}
+                                value={event.name || ""}
+                                onChange={handleEventNameChange}
+                                label="Event Name"
                                 >
                                     {event.name}
                             </TextField>
@@ -80,8 +89,8 @@ function EditPage() {
                                 <MobileDatePicker
                                     label="Event date"
                                     inputFormat="MM/dd/yyyy"
-                                    value={event.date}
-                                    onChange={(e) => handleDateChange(e.target.value)}
+                                    value={event.date || ""}
+                                    onChange={handleDateChange}
                                     renderInput={(params) => <TextField {...params} />}
                                 />
                                 </Stack>

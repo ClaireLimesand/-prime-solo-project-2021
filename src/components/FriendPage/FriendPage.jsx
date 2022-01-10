@@ -37,6 +37,14 @@ function FriendPage() {
             payload: id
         })
     }
+
+    const handleDeleteGift = (id) => {
+        console.log('HEY!', id)
+        dispatch({
+            type: 'DELETE_GIFT',
+            payload: id
+        })
+    }
     
     return (
     <div>
@@ -46,7 +54,8 @@ function FriendPage() {
             {detailsReducer.event && detailsReducer.event.map((event) => {
                     return <div>
                                 <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
-                                {/* <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button> */}
+                                {/* <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
+                                <Button variant="contained">Edit</Button> */}
                             </div>
             })}
         </ul>
@@ -64,8 +73,17 @@ function FriendPage() {
         
         <h5>You thought {detailsReducer.name} might like: </h5>
         <ul>
-            {detailsReducer.gifts && detailsReducer.gifts.map((gifts) => {
-                return <p>{gifts.idea}</p>
+            {detailsReducer.gifts && detailsReducer.gifts.map((gift) => {
+                return <div>
+                            <p>{gift.idea}</p>
+                            {/* <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
+                            <Button variant="contained" onClick={() => {
+                                    history.push(`${params.id}/edit`);
+                                    }}
+                            >
+                                    Edit
+                            </Button> */}
+                        </div>
             })}
         </ul>
 

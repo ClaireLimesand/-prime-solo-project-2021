@@ -21,9 +21,9 @@ function* deleteEvent(action) {
             method: 'DELETE',
             url: `/api/events/${action.payload}`,
     })
-    yield put({
-        type: 'FETCH_FRIENDS'
-    })
+    // yield put({
+    //     type: 'FETCH_FRIEND_DETAILS'
+    // })
     } catch (error) {
         console.log('deleteEvent error', error);
     }
