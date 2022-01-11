@@ -52,5 +52,44 @@ const {
             })
     });
 
+    router.get('/:id', rejectUnauthenticated, (req, res) => {
+        
+        const sqlQuery = `
+            SELECT * FROM "gifts"
+                WHERE "gift_id"=$1
+        `;
+        const SqlValues = [
+            req.params.id
+        ];
+        pool.query(sqlQuery, SqlValues)
+        .then((dbRes) => {
+            res.send(dbRes.rows[0]);
+        })
+        .catch((dbErr) => {
+            res.sendStatus(500);
+        })
+    });
+
+    router.put('/:id', (req, res) => {
+        const sqlText = `
+            UPDATE gifts
+                SET idea = $1
+                WHERE gift_id = $2;
+        `;
+        const sqlValues = [
+            req.body.idea,
+            req.params.id
+        ];
+
+        pool.query(sqlText, sqlValues)
+            .then((dbRes) => {
+                res.sendStatus(200);
+            })
+            .catch((dbErr) => {
+                console.log('PUT gifts error', dbErr);
+                res.sendStatus(500);
+            })
+    });
+    
     
     module.exports = router;

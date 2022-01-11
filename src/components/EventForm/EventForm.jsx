@@ -28,7 +28,8 @@ function EventForm() {
   const params = useParams();
 
   const [event, setEvent] = useState('');
-  const [date, setDate] = React.useState(new Date('2022-01-01T12:00:00'));
+  // const [date, setDate] = React.useState(new Date('2022-01-01T12:00:00'));
+  const [date, setDate] = React.useState(null);
 
   const handleChange = (newDate) => {
     setDate(newDate);

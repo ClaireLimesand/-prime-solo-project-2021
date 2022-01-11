@@ -54,29 +54,49 @@ const {
             })
     });
 
-    router.put('/:id', (req, res) => {
-        const sqlText = `
-            UPDATE event
-                SET 
-                    event_name = $1,
-                    event_date = $2
-                WHERE event_id = $3;
+    router.get('/:id', rejectUnauthenticated, (req, res) => {
+        console.log('in GET friends server', req.user);
+        
+        const sqlQuery = `
+            SELECT * FROM "events"
+                WHERE "event_id"=$1
         `;
-        const sqlValues = [
-            req.body.event_name,
-            req.body.event_date,
-            req.params.event_id
+        const SqlValues = [
+            req.params.id
         ];
-
-        pool.query(sqlText, sqlValues)
-            .then((dbRes) => {
-                res.sendStatus(200);
-            })
-            .catch((dbErr) => {
-                console.log('PUT events error', dbErr);
-                res.sendStatus(500);
-            })
+        pool.query(sqlQuery, SqlValues)
+        .then((dbRes) => {
+            res.send(dbRes.rows[0]);
+        })
+        .catch((dbErr) => {
+            res.sendStatus(500);
+        })
     });
+
+    // router.put('/:id', (req, res) => {
+    //     const sqlText = `
+    //         UPDATE event
+    //             SET 
+    //                 event_name = $1,
+    //                 event_date = $2
+    //             WHERE event_id = $3;
+    //     `;
+    //     const sqlValues = [
+    //         req.body.event_name,
+    //         req.body.event_date,
+    //         req.params.event_id
+    //     ];
+
+    //     pool.query(sqlText, sqlValues)
+    //         .then((dbRes) => {
+    //             res.sendStatus(200);
+    //         })
+    //         .catch((dbErr) => {
+    //             console.log('PUT events error', dbErr);
+    //             res.sendStatus(500);
+    //         })
+    // });
+    
 
     
     module.exports = router;

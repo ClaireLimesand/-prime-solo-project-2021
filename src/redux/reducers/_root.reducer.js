@@ -3,6 +3,8 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import friendsReducer from './friends.reducer';
 import detailsReducer from './details.reducer';
+import editEventReducer from './edit.reducer';
+import editGiftReducer from './edit.gift.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   friendsReducer, // contains user's friends
   detailsReducer, // contains friend's event and gift details 
+  editEventReducer,
+  editGiftReducer,
 });
 
 export default rootReducer;

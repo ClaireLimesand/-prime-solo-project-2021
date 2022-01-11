@@ -31,6 +31,7 @@ function UserPage() {
   }, []);
 
   const goToFriend = (friend) => {
+    console.log(friend.id)
     history.push(`/friendpage/${friend.id}`);
 } 
 
