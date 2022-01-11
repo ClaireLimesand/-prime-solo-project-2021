@@ -22,7 +22,9 @@ function* deleteGift(action) {
             url: `/api/gifts/${action.payload}`,
     })
     yield put({
-        type: 'FETCH_FRIENDS'
+        type: 'FETCH_FRIEND_DETAILS',
+        payload: action.payload
+        
     })
     } catch (error) {
         console.log('deleteGift error', error);

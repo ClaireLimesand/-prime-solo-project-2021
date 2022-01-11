@@ -15,6 +15,8 @@ import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 import BottomNav from '../BottomNav/BottomNav';
 
+import './UserPage.css';
+
 function UserPage() {
 
   const Button = styled(MuiButton)(spacing);
@@ -39,22 +41,14 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       
-      {/* <tbody>
-        {store.friendsReducer.map((friend, index) => (
-          <tr key={index}>
-            <td onClick={()=>{goToFriend(friend)}}>{friend.name}</td>
-          </tr>
-        ))}
-      </tbody> */}
-      
       <Grid container 
             spacing={2}
             direction="column"
             justifyContent="flex-start"
             alignItems="stretch">
       {
-      store.friendsReducer.map(friend => (
-        <Grid item xs={6}>
+      store.friendsReducer.map((friend, i) => (
+        <Grid key={i} item xs={6}>
           <Card className={"friendCard"} onClick={()=>{goToFriend(friend)}}>
             <CardContent className={"MuiCardContent-root"}>
               <Grid container justify="space-evenly">
@@ -66,14 +60,6 @@ function UserPage() {
           ))
         }
       </Grid>
-      
-      {/* <Box textAlign="center">
-        <Button  
-          variant="contained" 
-          onClick={() => history.push('/addfriend')}>
-          Add a Friend
-        </Button>
-      </Box> */}
 
       <Box textAlign="center"> 
         <LogOutButton className="btn" />
