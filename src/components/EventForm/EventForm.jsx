@@ -17,6 +17,7 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import MuiButton from "@material-ui/core/Button";
+import { Grid } from '@mui/material';
 import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 
@@ -63,15 +64,14 @@ function EventForm() {
   return (
     <div className="container">
       <p>Add Event Page</p>
-      <Box m={1} pt={2}>
         <TextField 
+          style = {{width: 360}} 
           type="text"
           label="Event name"
           value={event}
           onChange={(event) => setEvent(event.target.value)}
           required
         />
-      </Box>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={2}>
           <MobileDatePicker
@@ -84,7 +84,6 @@ function EventForm() {
         </Stack>
       </LocalizationProvider>
 
-      <Box textAlign="center" m={1} pt={2}>
         <Button
             variant="contained"
             id="saveButton"
@@ -92,9 +91,7 @@ function EventForm() {
         >
         Add This Event
       </Button>
-      </Box>
-      
-      <Box textAlign="center" m={1} pt={2}>
+
         <Button
             variant="contained"
             id="saveButton"
@@ -102,7 +99,7 @@ function EventForm() {
         >
         Back
         </Button>
-      </Box>
+
     </div>
   );
 }

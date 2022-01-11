@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
 import BottomNav from '../BottomNav/BottomNav';
 import MuiButton from "@material-ui/core/Button";
+import { Grid } from '@mui/material';
 import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 
@@ -36,22 +37,41 @@ function FriendForm() {
             dispatch({
                 type: 'ADD_FRIEND',
                 payload: newFriend
-            })
+            }); {
+        Swal.fire({
+                text: "Your freind has been added!",
+                icon: "success",
+            });
+        }
             history.push('/user');
         };  
     }
 
     return (
     <div>
-        <p>Add your friend here:</p>
+        <h3 className="title">Add your friend here:</h3>
+        <Grid
+                container
+                direction="row"
+                justifyContent="space-evenly"
+                alignItems="center"
+        >
             <TextField 
+                style = {{width: 300}}  
                 type="text"
                 label="Your Freind's Name"
-                variant="standard"
+                variant="outlined"
                 value={friendName}
                 onChange={(event) => setFriendName(event.target.value)}
                 required
             />
+        </Grid>
+        <Grid
+                container
+                direction="row"
+                justifyContent="space-evenly"
+                alignItems="center"
+        >
             <Button
                 variant="contained"
                 id="saveButton"
@@ -59,6 +79,7 @@ function FriendForm() {
             >
                 Add This Friend
             </Button>
+        </Grid>
     
     < BottomNav />
     </div>
