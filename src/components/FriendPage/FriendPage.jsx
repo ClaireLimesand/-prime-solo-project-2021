@@ -44,15 +44,45 @@ function FriendPage() {
             payload: id
         })
     }
-    
+
+    const displayEvents = () => {
+        if (detailsReducer.event.length === 0) {
+            return (
+            <div>
+                <p>{detailsReducer.name} does not have any upcoming events</p>
+            </div>
+            )
+        } else {
+            return  (
+                <div>
+                {detailsReducer.event && detailsReducer.event.map((event, i) => {      
+                        return <div key={i}>
+                                    <p>{detailsReducer.name}'s upcoming events are: </p>
+                                    <p>{event.name} on {event.date}</p>
+                                    <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
+                                    <Button variant="contained" onClick={() => {
+                                        history.push(`${event.event_id}/edit`);
+                                        }}
+                                    >
+                                        Edit
+                                    </Button>
+                                </div>
+                })}
+                </div>
+            )
+        }
+    }
+
     return (
     <div>
         <h3>{detailsReducer.name}</h3>
+        {/* {displayEvents()} */}
 
-        <ul>
-            {detailsReducer.event && detailsReducer.event.map((event) => {
-                    return <div>
-                                <p>{detailsReducer.name}'s {event.name} is on {event.date}</p>
+        <div>
+            {detailsReducer.event && detailsReducer.event.map((event, i) => {      
+                    return <div key={i}>
+                                <p>{detailsReducer.name}'s upcoming events are: </p>
+                                <p>{event.name} on {event.date}</p>
                                 <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
                                 <Button variant="contained" onClick={() => {
                                     history.push(`${event.event_id}/edit`);
@@ -62,7 +92,7 @@ function FriendPage() {
                                 </Button>
                             </div>
             })}
-        </ul>
+        </div>
 
         <Box textAlign="center" textAlign="center" m={1} pt={2}>
             <Button
@@ -75,21 +105,23 @@ function FriendPage() {
             </Button>
         </Box>
         
-        <h5>You thought {detailsReducer.name} might like: </h5>
-        <ul>
-            {detailsReducer.gifts && detailsReducer.gifts.map((gift) => {
-                return <div>
-                            <p>{gift.idea}</p>
-                            <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
-                            <Button variant="contained" onClick={() => {
-                                    history.push(`${gift.gift_id}/editgift`);
-                                    }}
-                            >
-                                    Edit
-                            </Button>
-                        </div>
+        {/* <h5>You thought {detailsReducer.name} might like: </h5> */}
+
+        <div>
+            {detailsReducer.gifts && detailsReducer.gifts.map((gift, i) => {
+                    return <div key={i}>
+                                <h5>You thought {detailsReducer.name} might like: </h5>
+                                <p>{gift.idea}</p>
+                                <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
+                                <Button variant="contained" onClick={() => {
+                                        history.push(`${gift.gift_id}/editgift`);
+                                        }}
+                                >
+                                        Edit
+                                </Button>
+                            </div>
             })}
-        </ul>
+        </div>
 
         <Box textAlign="center" m={1} pt={2}>
             <Button
@@ -101,18 +133,6 @@ function FriendPage() {
                 Add a gift idea for {detailsReducer.name}
             </Button>
         </Box>
-        
-        {/* <Box textAlign="center" m={1} pt={2}>
-            <Button
-                variant="contained"
-                type="button"
-                onClick={() => {
-                history.push(`${params.id}/edit`);
-            }}
-            >
-                Edit This Friend
-            </Button>
-        </Box> */}
 
         <BottomNav />
     </div>

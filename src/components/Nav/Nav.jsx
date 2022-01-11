@@ -31,7 +31,7 @@ function Nav() {
             </Link> */}
 
 
-            <LogOutButton className="navLink" />
+            {/* <LogOutButton className="navLink" /> */}
           </>
         )}
 
