@@ -5,6 +5,11 @@ import userSaga from './user.saga';
 import friendsSaga from './friends.saga';
 import giftsSaga from './gifts.saga';
 import eventsSaga from './events.saga';
+// import detailsSaga from './details.saga';
+import editSaga from './edit.saga';
+import fetchGiftSaga from './fetch.gift.saga';
+import editGiftSaga from './edit.gift.saga';
+import editGiftReducer from '../reducers/edit.gift.reducer';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,6 +25,10 @@ export default function* rootSaga() {
     userSaga(),
     friendsSaga(),
     giftsSaga(),
-    eventsSaga()
+    eventsSaga(),
+    // detailsSaga(),
+    editSaga(),
+    fetchGiftSaga(),
+    editGiftSaga(),
   ]);
 }
