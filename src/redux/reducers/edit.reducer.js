@@ -8,7 +8,7 @@ const editEventReducer = (state = {}, action) => {
         return { ... state, name: action.payload }
     } else if (action.type === 'EDIT_EVENT_DATE') {
         console.log('edit date', action.payload)
-        // return { ... state, date: action.paylaod }
+        return { ... state, date: action.payload }
     }
     return state;
 };

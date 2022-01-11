@@ -73,29 +73,29 @@ const {
         })
     });
 
-    // router.put('/:id', (req, res) => {
-    //     const sqlText = `
-    //         UPDATE event
-    //             SET 
-    //                 event_name = $1,
-    //                 event_date = $2
-    //             WHERE event_id = $3;
-    //     `;
-    //     const sqlValues = [
-    //         req.body.event_name,
-    //         req.body.event_date,
-    //         req.params.event_id
-    //     ];
+    router.put('/:id', (req, res) => {
+        const sqlText = `
+            UPDATE events
+                SET 
+                    event_name = $1,
+                    event_date = $2
+                WHERE event_id = $3;
+        `;
+        const sqlValues = [
+            req.body.name,
+            req.body.date,
+            req.params.id
+        ];
 
-    //     pool.query(sqlText, sqlValues)
-    //         .then((dbRes) => {
-    //             res.sendStatus(200);
-    //         })
-    //         .catch((dbErr) => {
-    //             console.log('PUT events error', dbErr);
-    //             res.sendStatus(500);
-    //         })
-    // });
+        pool.query(sqlText, sqlValues)
+            .then((dbRes) => {
+                res.sendStatus(200);
+            })
+            .catch((dbErr) => {
+                console.log('PUT events error', dbErr);
+                res.sendStatus(500);
+            })
+    });
     
 
     

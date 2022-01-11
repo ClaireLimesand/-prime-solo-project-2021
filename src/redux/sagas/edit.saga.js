@@ -18,8 +18,22 @@ function* fetchEvent(action) {
     }
 }
 
+function* editEvent(action) {
+    console.log('edit event', action.payload)
+    try {
+        yield axios({
+            method: 'PUT',
+            url: `/api/events/${action.payload.id}`,
+            data: action.payload
+        })
+    }   catch (error) {
+        console.log(error)
+    }
+}
+
 function* editSaga() {
     yield takeEvery('FETCH_EVENT', fetchEvent);
+    yield takeEvery('EDIT_EVENT', editEvent);
 }
 
 export default editSaga;

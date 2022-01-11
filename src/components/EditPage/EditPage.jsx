@@ -57,22 +57,24 @@ function EditPage() {
         })
     };
     
-    const handleDateChange = (event) => {
-        console.log('HEY event', event)
+    const handleDateChange = (newValue) => {
+        let eventDate = newValue
+        console.log('*****', newValue)
         dispatch({
             type: 'EDIT_EVENT_DATE',
-            payload: event.target.value
+            payload: newValue
         })
     };
 
-    const handleSaveButton = (event, index) => {
+    const handleSaveButton = (event) => {
         event.preventDefault()
-        console.log('details reducer', detailsReducer)
-        detailsReducer.id = params.id
-        detailsReducer.testIndex = index
         dispatch({
-            type: 'EDIT_FRIEND_DETAILS',
-            payload: detailsReducer
+            type: 'EDIT_EVENT',
+            payload: {
+                id: params.id,
+                name: editEventReducer.name,
+                date: editEventReducer.date
+            }
         })
     };
 
@@ -93,36 +95,20 @@ function EditPage() {
                                 <Stack spacing={2}>
                                 <MobileDatePicker
                                     label="Event date"
-                                    // inputFormat="MM/dd/yyyy"
+                                    inputFormat="MM/dd/yyyy"
                                     value={editEventReducer.date || null}
-                                    onChange={handleDateChange}
+                                    onChange={(newValue) => {handleDateChange(newValue)}}
                                     renderInput={(params) => <TextField {...params} />}
                                 />
                                 </Stack>
                             </LocalizationProvider>
                         </div>
         </ul>
-        
-        {/* <h4>{detailsReducer.name}'s gifts:</h4>
-        
-        {detailsReducer.gifts && detailsReducer.gifts.map((gift) => {
-            return (
-                <div>
-                    <TextField 
-                        defaultValue={gift.name || ""}
-                        onChange={handleGiftNameChange}
-                        label="Gift Name"
-                    >
-                    </TextField>
-                    <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
-                    <Button variant="contained">Edit</Button>
-                </div>
-            )})} */}
 
         <div>
             <Button 
                 variant="contained" 
-                onClick={(event) => handleSaveButton(event, index)}
+                onClick={handleSaveButton}
             >
             Save
             </Button>
