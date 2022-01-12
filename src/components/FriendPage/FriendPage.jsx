@@ -45,33 +45,33 @@ function FriendPage() {
         })
     }
 
-    const displayEvents = () => {
-        if (detailsReducer.event.length === 0) {
-            return (
-            <div>
-                <p>{detailsReducer.name} does not have any upcoming events</p>
-            </div>
-            )
-        } else {
-            return  (
-                <div>
-                {detailsReducer.event && detailsReducer.event.map((event, i) => {      
-                        return <div key={i}>
-                                    <p>{detailsReducer.name}'s upcoming events are: </p>
-                                    <p>{event.name} on {event.date}</p>
-                                    <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
-                                    <Button variant="contained" onClick={() => {
-                                        history.push(`${event.event_id}/edit`);
-                                        }}
-                                    >
-                                        Edit
-                                    </Button>
-                                </div>
-                })}
-                </div>
-            )
-        }
-    }
+    // const displayEvents = () => {
+    //     if (detailsReducer.event.length === 0) {
+    //         return (
+    //         <div>
+    //             <p>{detailsReducer.name} does not have any upcoming events</p>
+    //         </div>
+    //         )
+    //     } else {
+    //         return  (
+    //             <div>
+    //             {detailsReducer.event && detailsReducer.event.map((event, i) => {      
+    //                     return <div key={i}>
+    //                                 <p>{detailsReducer.name}'s upcoming events are: </p>
+    //                                 <p>{event.name} on {event.date}</p>
+    //                                 <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
+    //                                 <Button variant="contained" onClick={() => {
+    //                                     history.push(`${event.event_id}/edit`);
+    //                                     }}
+    //                                 >
+    //                                     Edit
+    //                                 </Button>
+    //                             </div>
+    //             })}
+    //             </div>
+    //         )
+    //     }
+    // }
 
     return (
     <div>
@@ -85,7 +85,7 @@ function FriendPage() {
                                 <p>{event.name} on {event.date}</p>
                                 <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
                                 <Button variant="contained" onClick={() => {
-                                    history.push(`${event.event_id}/edit`);
+                                    history.push(`${params.id}/edit/${event.event_id}`);
                                     }}
                                 >
                                     Edit
@@ -114,7 +114,7 @@ function FriendPage() {
                                 <p>{gift.idea}</p>
                                 <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
                                 <Button variant="contained" onClick={() => {
-                                        history.push(`${gift.gift_id}/editgift`);
+                                        history.push(`${params.id}/editgift/${gift.gift_id}`);
                                         }}
                                 >
                                         Edit

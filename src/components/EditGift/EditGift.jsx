@@ -31,7 +31,7 @@ function EditGift() {
     useEffect(() => {
         dispatch({
             type: 'FETCH_GIFT',
-            payload: params.id
+            payload: params.gift_id
         })
     }, [params.id]);
 
@@ -48,7 +48,7 @@ function EditGift() {
         dispatch({
             type: 'EDIT_GIFT',
             payload: {
-                id: params.id,
+                id: params.gift_id,
                 idea: editGiftReducer.idea
             }
         })
@@ -76,7 +76,7 @@ function EditGift() {
             <Button
                 variant="contained"
                 id="saveButton"
-                onClick={() => history.push(`/friendpage/${editGiftReducer.friend_id}`)}>
+                onClick={() => history.push(`/friendpage/${params.friend_id}`)}>
                     Back
             </Button>
         </div>

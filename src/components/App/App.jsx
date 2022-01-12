@@ -93,7 +93,7 @@ function App() {
           <ProtectedRoute
             // takes user to the edit page
             exact
-            path="/friendpage/:id/edit"
+            path="/friendpage/:friend_id/edit/:gift_id"
           >
             <EditPage />
           </ProtectedRoute>
@@ -101,7 +101,7 @@ function App() {
           <ProtectedRoute
             // takes user to the edit gift page
             exact
-            path="/friendpage/:id/editgift"
+            path="/friendpage/:friend_id/editgift/:gift_id"
           >
             <EditGift />
           </ProtectedRoute>

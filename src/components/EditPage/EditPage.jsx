@@ -37,7 +37,7 @@ function EditPage() {
     useEffect(() => {
         dispatch({
             type: 'FETCH_EVENT',
-            payload: params.id
+            payload: params.gift_id
         })
     }, [params.id]);
 
@@ -71,7 +71,7 @@ function EditPage() {
         dispatch({
             type: 'EDIT_EVENT',
             payload: {
-                id: params.id,
+                id: params.gift_id,
                 name: editEventReducer.name,
                 date: editEventReducer.date
             }
@@ -115,7 +115,7 @@ function EditPage() {
             <Button
                 variant="contained"
                 id="saveButton"
-                onClick={() => history.push(`/friendpage/${params.id}`)}>
+                onClick={() => history.push(`/friendpage/${params.friend_id}`)}>
                     Back
             </Button>
         </div>
