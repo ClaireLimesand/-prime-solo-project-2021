@@ -31,19 +31,19 @@ function FriendPage() {
     }, [params.id]);
     // console.log('details events***', detailsReducer.event)
 
-    const handleDeleteEvent = (id) => {
-        dispatch({
-            type: 'DELETE_EVENT',
-            payload: id
-        })
-    }
+    // const handleDeleteEvent = (id) => {
+    //     dispatch({
+    //         type: 'DELETE_EVENT',
+    //         payload: id
+    //     })
+    // }
 
-    const handleDeleteGift = (id) => {
-        dispatch({
-            type: 'DELETE_GIFT',
-            payload: id
-        })
-    }
+    // const handleDeleteGift = (id) => {
+    //     dispatch({
+    //         type: 'DELETE_GIFT',
+    //         payload: id
+    //     })
+    // }
 
     return (
     <div>
@@ -55,7 +55,7 @@ function FriendPage() {
                     return <div key={i}>
                                 <p>{detailsReducer.name}'s upcoming events are: </p>
                                 <p>{event.name} on {event.date}</p>
-                                <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
+                                {/* <Button variant="contained" onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button> */}
                                 <Button variant="contained" onClick={() => {
                                     history.push(`${params.id}/editevent/${event.event_id}`);
                                     }}
@@ -84,7 +84,7 @@ function FriendPage() {
                     return <div key={i}>
                                 <h5>You thought {detailsReducer.name} might like: </h5>
                                 <p>{gift.idea}</p>
-                                <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button>
+                                {/* <Button variant="contained" onClick={() => handleDeleteGift(gift.gift_id)}>Delete</Button> */}
                                 <Button variant="contained" onClick={() => {
                                         history.push(`${params.id}/editgift/${gift.gift_id}`);
                                         }}
@@ -102,7 +102,7 @@ function FriendPage() {
                 onClick={() => {
                 history.push(`${params.id}/addgift`);
             }}>
-                Add a gift idea for {detailsReducer.name}
+                Add a gift for {detailsReducer.name}
             </Button>
         </Box>
 

@@ -20,12 +20,7 @@ function* deleteGift(action) {
         const response = yield axios({
             method: 'DELETE',
             url: `/api/gifts/${action.payload}`,
-    })
-    yield put({
-        type: 'FETCH_FRIEND_DETAILS',
-        payload: action.payload
-        
-    })
+        })
     } catch (error) {
         console.log('deleteGift error', error);
     }

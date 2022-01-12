@@ -50,6 +50,7 @@ function EventForm() {
         Swal.fire({
             title: "Hey, wait!",
             text: "Please input an event name",
+            icon: "warning"
         });
       } else {
         console.log('yay!')
@@ -57,6 +58,11 @@ function EventForm() {
             type: 'ADD_EVENT',
             payload: newEvent
         })
+        Swal.fire({
+          title: "Good job!",
+          text: "This event has been added",
+          icon: "success",
+      });
         history.push(`/friendpage/${params.id}`);
     }; 
   }

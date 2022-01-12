@@ -51,33 +51,50 @@ function EditGift() {
                 idea: editGiftReducer.idea
             }
         })
+        Swal.fire({
+            text: "This gift has been edited!",
+            icon: "success",
+        });
+        history.push(`/friendpage/${params.friend_id}`)
     };
 
-    return (
-    <div>
-                <div>
-                    <TextField 
-                        value={editGiftReducer.idea || ""}
-                        onChange={handleIdeaChange}
-                        label="Gift Name"
-                    >
-                    </TextField>
-                </div>
-            
+    const handleDeleteGift = (id) => {
+        dispatch({
+            type: 'DELETE_GIFT',
+            payload: id
+        })
+        Swal.fire({
+            text: "This gift has been deleted!",
+            icon: "success",
+        });
+        history.push(`/friendpage/${params.friend_id}`)
+    }
 
+    return (
         <div>
-            <Button 
-                variant="contained" 
-                onClick={handleSaveButton}
-            >
-            Save
-            </Button>
-            <Button
-                variant="contained"
-                id="saveButton"
-                onClick={() => history.push(`/friendpage/${params.friend_id}`)}>
-                    Back
-            </Button>
+            <div>
+                <TextField 
+                    value={editGiftReducer.idea || ""}
+                    onChange={handleIdeaChange}
+                    label="Gift Name"
+                >
+                </TextField>
+            </div>
+            
+            <div>
+                <Button 
+                    variant="contained" 
+                    onClick={handleSaveButton}
+                >
+                Save
+                </Button>
+                    
+                <Button 
+                    variant="contained" 
+                    onClick={() => handleDeleteGift(params.gift_id)}
+                >
+                    Delete
+                </Button>
         </div>
 
         < BottomNav />

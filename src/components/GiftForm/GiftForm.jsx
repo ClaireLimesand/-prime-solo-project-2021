@@ -36,12 +36,18 @@ function GiftForm() {
             Swal.fire({
                 title: "Hey, wait!",
                 text: "Please input a gift idea",
+                icon: "warning"
             });
         } else {
             dispatch({
                 type: 'ADD_GIFT',
                 payload: newGift
             })
+            Swal.fire({
+                title: "Great idea!",
+                text: "This gift has been added",
+                icon: "success"
+            });
             history.push(`/friendpage/${params.id}`);
         };  
     }

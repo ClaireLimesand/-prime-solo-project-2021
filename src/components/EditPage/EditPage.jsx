@@ -75,7 +75,24 @@ function EditPage() {
                 date: editEventReducer.date
             }
         })
+        Swal.fire({
+            text: "This event has been edited!",
+            icon: "success",
+        });
+        history.push(`/friendpage/${params.friend_id}`)
     };
+
+    const handleDeleteEvent = (id) => {
+        dispatch({
+            type: 'DELETE_EVENT',
+            payload: id
+        })
+        Swal.fire({
+            text: "This event has been deleted!",
+            icon: "success",
+        });
+        history.push(`/friendpage/${params.friend_id}`);
+    }
 
     return (
     <div>
@@ -111,12 +128,18 @@ function EditPage() {
             >
             Save
             </Button>
-            <Button
+            <Button 
+                variant="contained" 
+                onClick={() => handleDeleteEvent(params.event_id)}
+            >
+                Delete
+            </Button>
+            {/* <Button
                 variant="contained"
                 id="saveButton"
                 onClick={() => history.push(`/friendpage/${params.friend_id}`)}>
                     Back
-            </Button>
+            </Button> */}
         </div>
 
         < BottomNav />
