@@ -31,13 +31,12 @@ function EditPage() {
 
     console.log('params', params)
 
-    // const detailsReducer = useSelector(store => store.detailsReducer)
     const editEventReducer = useSelector(store => store.editEventReducer)
 
     useEffect(() => {
         dispatch({
             type: 'FETCH_EVENT',
-            payload: params.id
+            payload: params.event_id
         })
     }, [params.id]);
 
@@ -71,7 +70,7 @@ function EditPage() {
         dispatch({
             type: 'EDIT_EVENT',
             payload: {
-                id: params.id,
+                id: params.event_id,
                 name: editEventReducer.name,
                 date: editEventReducer.date
             }
@@ -115,7 +114,7 @@ function EditPage() {
             <Button
                 variant="contained"
                 id="saveButton"
-                onClick={() => history.push(`/friendpage/${params.id}`)}>
+                onClick={() => history.push(`/friendpage/${params.friend_id}`)}>
                     Back
             </Button>
         </div>
