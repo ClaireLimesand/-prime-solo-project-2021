@@ -7,19 +7,40 @@ const {
 
     // POST to add a new event 
 
+    router.get('/', rejectUnauthenticated, (req, res) => {
+        console.log('in GET events server', req.user);
+        
+        const sqlQuery = `
+            SELECT * FROM "events"
+            WHERE "user_id"=$1
+            AND event_date > CURRENT_DATE
+            ORDER BY "event_date" ASC;
+        `;
+        const sqlValues = [req.user.id];
+        pool.query(sqlQuery, sqlValues)
+        .then((dbRes) => {
+            console.log('dbrows', dbRes.rows)
+            res.send(dbRes.rows);
+        })
+        .catch((dbErr) => {
+            res.sendStatus(500);
+        })
+    });
+
     router.post('/', rejectUnauthenticated, (req, res) => {
-        console.log('in POST events server', req.user);
+        console.log('in POST events server', req.user.id);
         const newEvent = req.body;
         console.log('server newEvent', newEvent)
     
         const sqlQuery = `
-        INSERT INTO "events" ("event_name", "event_date", "freind_id")
-        VALUES ($1, $2, $3)
+        INSERT INTO "events" ("event_name", "event_date", "freind_id", "user_id")
+        VALUES ($1, $2, $3, $4)
     `;
         const sqlValues = [
             newEvent.event,
             newEvent.date,
-            newEvent.friend_id
+            newEvent.friend_id,
+            req.user.id
         ]
         
         pool.query(sqlQuery, sqlValues)

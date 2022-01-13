@@ -31,7 +31,7 @@ function* addFriend(action) {
 }
 
 function* fetchFriendDetails(action) {
-    console.log('******', action.payload)
+    console.log('****** action.payload', action.payload)
     const response = yield axios({
         method: 'GET',
         url: `/api/friends/${action.payload}`

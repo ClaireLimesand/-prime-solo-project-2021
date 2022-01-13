@@ -15,8 +15,6 @@ import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 import BottomNav from '../BottomNav/BottomNav';
 
-import './UserPage.css';
-
 function EventList() {
 
   const Button = styled(MuiButton)(spacing);
@@ -24,22 +22,20 @@ function EventList() {
   const dispatch = useDispatch();
   const store = useReduxStore();
 
-  const user = useSelector((store) => store.user);
-  const friendsReducer = useSelector((store) => store.friendsReducer);
+  const eventsReducer = useSelector((store) => store.eventsReducer);
 
   useEffect(() => {
-    console.log('in useEffect FETCH_FRIENDS');
-    dispatch({ type: 'FETCH_FRIENDS' });
+    dispatch({ type: 'FETCH_EVENTS' });
   }, []);
 
-  const goToFriend = (friend) => {
-    console.log(friend.id)
-    history.push(`/friendpage/${friend.id}`);
+  const goToFriend = (event) => {
+    console.log('helloooo!', event.freind_id)
+    history.push(`/friendpage/${event.freind_id}`);
 } 
 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
+      {/* <h2>Welcome, {user.username}!</h2> */}
       
       <Grid container 
             spacing={2}
@@ -47,12 +43,12 @@ function EventList() {
             justifyContent="flex-start"
             alignItems="stretch">
       {
-      store.friendsReducer.map((friend, i) => (
+      store.eventsReducer.map((event, i) => (
         <Grid key={i} item xs={6}>
-          <Card className={"friendCard"} onClick={()=>{goToFriend(friend)}}>
+          <Card className={"eventCard"} onClick={()=>{goToFriend(event)}}>
             <CardContent className={"MuiCardContent-root"}>
               <Grid container justify="space-evenly">
-                <label>{friend.name}</label>
+                <label>{event.event_name} on {event.event_date}</label>
               </Grid>
             </CardContent>
           </Card>

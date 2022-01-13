@@ -23,6 +23,7 @@ import EventForm from '../EventForm/EventForm';
 import GiftForm from '../GiftForm/GiftForm';
 import EditPage from '../EditPage/EditPage'
 import EditGift from '../EditGift/EditGift';
+import EventList from '../EventList/EventList';
 
 import './App.css';
 
@@ -104,6 +105,14 @@ function App() {
             path="/friendpage/:friend_id/editgift/:gift_id"
           >
             <EditGift />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // takes user to the edit gift page
+            exact
+            path="/events"
+          >
+            <EventList />
           </ProtectedRoute>
 
           <Route

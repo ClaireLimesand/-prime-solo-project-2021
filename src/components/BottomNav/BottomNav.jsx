@@ -29,7 +29,7 @@ export default function FixedBottomNavigation() {
         >
             <BottomNavigationAction onClick={() => {history.push(`/addfriend`);}} label="Add A Friend" icon={<AddCircleOutlineRoundedIcon />} />
             <BottomNavigationAction onClick={() => {history.push(`/user`);}} label="Friends" icon={<FavoriteRoundedIcon />} />
-            <BottomNavigationAction label="Events" icon={<CalendarTodayRoundedIcon />} />
+            <BottomNavigationAction onClick={() => {history.push(`/events`);}} label="Events" icon={<CalendarTodayRoundedIcon />} />
         </BottomNavigation>
       </Paper>
     </Box>
