@@ -59,8 +59,8 @@ function EventForm() {
             payload: newEvent
         })
         Swal.fire({
-          title: "Good job!",
-          text: "This event has been added",
+          title: "Nice!",
+          text: "Your event has been added",
           icon: "success",
       });
       dispatch({

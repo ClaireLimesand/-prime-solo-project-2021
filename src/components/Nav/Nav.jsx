@@ -11,31 +11,7 @@ function Nav() {
 
   return (
     <div className="nav">
-      {/* <Link to="/home"> */}
-        <h1>I don't have a name :(</h1>
-      {/* </Link> */}
-      <div>
-        {/* If no user is logged in, show these links */}
-        {user.id === null &&
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        }
-
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            {/* <Link className="navLink" to="/user">
-              Your Friends
-            </Link> */}
-
-
-            {/* <LogOutButton className="navLink" /> */}
-          </>
-        )}
-
-      </div>
+        <h1 className="nav-title">gifter.</h1>
     </div>
   );
 }

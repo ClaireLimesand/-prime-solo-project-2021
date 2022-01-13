@@ -69,7 +69,7 @@ pool.query (sqlQuery, [sqlValues])
     .then((dbRes1) => {
         let friendDetails = {
             name: dbRes1.rows[0].name,
-            event: dbRes1.rows.map((row) => {
+            event: dbRes1.rows.filter(rows => rows.event_id != null).map((row) => {
                 return {
                     name: row.event_name,
                     date: row.event_date,
