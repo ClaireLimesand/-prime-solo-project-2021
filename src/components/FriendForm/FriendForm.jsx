@@ -32,6 +32,7 @@ function FriendForm() {
             Swal.fire({
                 title: "Hey, wait!",
                 text: "Your friend needs a name.",
+                icon: "warning"
             });
         } else {
             dispatch({
@@ -39,8 +40,9 @@ function FriendForm() {
                 payload: newFriend
             }); {
         Swal.fire({
-                text: "Your freind has been added!",
-                icon: "success",
+                title: "Good job!",
+                text: "Your friend has been added!",
+                icon: "success"
             });
         }
             history.push('/user');
@@ -59,7 +61,7 @@ function FriendForm() {
             <TextField 
                 style = {{width: 300}}  
                 type="text"
-                label="Your Freind's Name"
+                label="Your freind's name"
                 variant="outlined"
                 value={friendName}
                 onChange={(event) => setFriendName(event.target.value)}

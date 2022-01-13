@@ -20,6 +20,7 @@ import MuiButton from "@material-ui/core/Button";
 import { Grid } from '@mui/material';
 import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
+import BottomNav from '../BottomNav/BottomNav';
 
 function EventForm() {
 
@@ -53,7 +54,6 @@ function EventForm() {
             icon: "warning"
         });
       } else {
-        console.log('yay!')
         dispatch({
             type: 'ADD_EVENT',
             payload: newEvent
@@ -63,6 +63,10 @@ function EventForm() {
           text: "This event has been added",
           icon: "success",
       });
+      dispatch({
+        type: 'FETCH_FRIEND_DETAILS',
+        payload: params.id
+    })
         history.push(`/friendpage/${params.id}`);
     }; 
   }
@@ -106,6 +110,8 @@ function EventForm() {
         Back
         </Button>
 
+        <BottomNav />
+        
     </div>
   );
 }

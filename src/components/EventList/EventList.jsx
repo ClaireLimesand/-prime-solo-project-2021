@@ -17,7 +17,7 @@ import BottomNav from '../BottomNav/BottomNav';
 
 import './UserPage.css';
 
-function UserPage() {
+function EventList() {
 
   const Button = styled(MuiButton)(spacing);
   const history = useHistory();
@@ -28,7 +28,7 @@ function UserPage() {
   const friendsReducer = useSelector((store) => store.friendsReducer);
 
   useEffect(() => {
-    // console.log('in useEffect FETCH_FRIENDS');
+    console.log('in useEffect FETCH_FRIENDS');
     dispatch({ type: 'FETCH_FRIENDS' });
   }, []);
 
@@ -71,4 +71,4 @@ function UserPage() {
 }
 
 // this allows us to use <App /> in index.js
-export default UserPage;
+export default EventList;

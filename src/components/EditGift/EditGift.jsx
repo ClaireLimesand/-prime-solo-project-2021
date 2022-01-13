@@ -52,9 +52,13 @@ function EditGift() {
             }
         })
         Swal.fire({
-            text: "This gift has been edited!",
+            text: "This gift has been edited",
             icon: "success",
         });
+        dispatch({
+            type: 'FETCH_FRIEND_DETAILS',
+            payload: params.friend_id
+        })
         history.push(`/friendpage/${params.friend_id}`)
     };
 
@@ -64,9 +68,13 @@ function EditGift() {
             payload: id
         })
         Swal.fire({
-            text: "This gift has been deleted!",
+            text: "This gift has been deleted",
             icon: "success",
         });
+        dispatch({
+            type: 'FETCH_FRIEND_DETAILS',
+            payload: params.friend_id
+        })
         history.push(`/friendpage/${params.friend_id}`)
     }
 

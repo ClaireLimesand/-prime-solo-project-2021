@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import MuiButton from "@material-ui/core/Button";
 import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
+import BottomNav from '../BottomNav/BottomNav';
 
 function GiftForm() {
 
@@ -48,6 +49,10 @@ function GiftForm() {
                 text: "This gift has been added",
                 icon: "success"
             });
+            dispatch({
+                type: 'FETCH_FRIEND_DETAILS',
+                payload: params.id
+            })
             history.push(`/friendpage/${params.id}`);
         };  
     }
@@ -81,6 +86,8 @@ function GiftForm() {
                 Back
                 </Button>
             </Box>
+
+            < BottomNav />
         </div>
     );
 }

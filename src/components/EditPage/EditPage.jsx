@@ -75,8 +75,12 @@ function EditPage() {
                 date: editEventReducer.date
             }
         })
+        dispatch({
+            type: 'FETCH_FRIEND_DETAILS',
+            payload: params.friend_id
+        })
         Swal.fire({
-            text: "This event has been edited!",
+            text: "This event has been edited",
             icon: "success",
         });
         history.push(`/friendpage/${params.friend_id}`)
@@ -87,8 +91,12 @@ function EditPage() {
             type: 'DELETE_EVENT',
             payload: id
         })
+        dispatch({
+            type: 'FETCH_FRIEND_DETAILS',
+            payload: params.friend_id
+        })
         Swal.fire({
-            text: "This event has been deleted!",
+            text: "This event has been deleted",
             icon: "success",
         });
         history.push(`/friendpage/${params.friend_id}`);
