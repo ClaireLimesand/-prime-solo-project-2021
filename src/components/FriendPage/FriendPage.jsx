@@ -16,6 +16,8 @@ import BottomNav from '../BottomNav/BottomNav';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import IconButton from '@mui/material/IconButton';
 
+import './FriendPage.css';
+
 function FriendPage() {
 
     const Button = styled(MuiButton)(spacing);
@@ -52,7 +54,7 @@ function FriendPage() {
 
     return (
     <div>
-        <h2>{detailsReducer.name}</h2>
+        <h2 className="friend_title">{detailsReducer.name}</h2>
         {/* {(detailsReducer.event.name === null) ?
         <p>hi!!!</p>
         :
@@ -102,7 +104,7 @@ function FriendPage() {
             </Button>
         </Box>
         
-        {/* <h5>You thought {detailsReducer.name} might like: </h5> */}
+        <h5>You thought {detailsReducer.name} might like: </h5>
 
         <div>
             {detailsReducer.gifts && detailsReducer.gifts.map((gift, i) => {

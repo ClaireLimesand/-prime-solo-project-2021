@@ -11,6 +11,8 @@ function Nav() {
 
   return (
     <div className="nav">
+        {/* <a href="https://www.flaticon.com/free-icons/gift" title="gift icons">Gift icons created by Phoenix Group - Flaticon</a> */}
+        {/* <img className="gift-icon" src="/public/images/gift.png" /> */}
         <h1 className="nav-title">gifter.</h1>
     </div>
   );

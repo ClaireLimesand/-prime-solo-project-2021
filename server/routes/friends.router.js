@@ -50,6 +50,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+
 // "events"."event_date",
 router.get('/:id', rejectUnauthenticated, (req, res) => {
 // left join query for events

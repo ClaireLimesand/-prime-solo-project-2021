@@ -7,13 +7,26 @@ const {
 
     // POST to add a new event 
 
+    // SELECT * FROM "events"
+    // WHERE "user_id"=$1
+    // AND event_date > CURRENT_DATE
+    // ORDER BY "event_date" ASC;
+
     router.get('/', rejectUnauthenticated, (req, res) => {
         console.log('in GET events server', req.user);
         
         const sqlQuery = `
-            SELECT * FROM "events"
-            WHERE "user_id"=$1
-            AND event_date > CURRENT_DATE
+        SELECT 
+            "events"."event_name",
+            TO_CHAR("event_date",'MM-DD-YYYY') AS "event_date", 
+            "events"."event_id",
+            "events"."freind_id",
+            "friends"."name"
+        FROM "events" 
+            LEFT JOIN "friends"
+            ON "events"."freind_id"="friends"."id"
+        WHERE "events"."user_id"=$1
+        AND event_date > CURRENT_DATE
             ORDER BY "event_date" ASC;
         `;
         const sqlValues = [req.user.id];

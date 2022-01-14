@@ -26,6 +26,7 @@ function EventList() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENTS' });
+        dispatch({ type: 'FETCH_FRIENDS' });
     }, []);
 
     const goToFriend = (event) => {
@@ -48,7 +49,7 @@ function EventList() {
             <Card className={"eventCard"} onClick={()=>{goToFriend(event)}}>
                 <CardContent className={"MuiCardContent-root"}>
                 <Grid container justify="space-evenly">
-                    <label>{event.event_name} on {event.event_date}</label>
+                    <label>{event.name}'s {event.event_name} on {event.event_date}</label>
                 </Grid>
                 </CardContent>
             </Card>

@@ -28,7 +28,6 @@ function UserPage() {
   const friendsReducer = useSelector((store) => store.friendsReducer);
 
   useEffect(() => {
-    // console.log('in useEffect FETCH_FRIENDS');
     dispatch({ type: 'FETCH_FRIENDS' });
   }, []);
 
@@ -39,17 +38,17 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
+      <h2 className="introduction">Welcome, {user.username}!</h2>
       
       <Grid container 
             spacing={2}
             direction="column"
-            justifyContent="flex-start"
+            justifyContent="center"
             alignItems="stretch">
       {
       store.friendsReducer.map((friend, i) => (
-        <Grid key={i} item xs={6}>
-          <Card className={"friendCard"} onClick={()=>{goToFriend(friend)}}>
+        <Grid alignItems="center" key={i} item xs={6}>
+          <Card text-align="center" className={"friendCard"} onClick={()=>{goToFriend(friend)}}>
             <CardContent className={"MuiCardContent-root"}>
               <Grid container justify="space-evenly">
                 <label>{friend.name}</label>

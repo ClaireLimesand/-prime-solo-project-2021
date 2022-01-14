@@ -14,6 +14,7 @@ import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/Favorite';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
+import './BottomNav.css';
 
 export default function FixedBottomNavigation() {
 
@@ -23,7 +24,7 @@ export default function FixedBottomNavigation() {
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={4}>
         <BottomNavigation
           showLabels
         >
