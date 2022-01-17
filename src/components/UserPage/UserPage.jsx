@@ -14,6 +14,7 @@ import MuiButton from "@material-ui/core/Button";
 import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 import BottomNav from '../BottomNav/BottomNav';
+import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 
 import './UserPage.css';
 

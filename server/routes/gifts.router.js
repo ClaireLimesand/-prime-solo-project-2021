@@ -70,7 +70,7 @@ const {
         })
     });
 
-    router.put('/:id', (req, res) => {
+    router.put('/:id', rejectUnauthenticated, (req, res) => {
         const sqlText = `
             UPDATE gifts
                 SET idea = $1

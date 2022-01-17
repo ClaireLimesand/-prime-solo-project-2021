@@ -13,6 +13,7 @@ import ListItem from '@mui/material/ListItem';
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/Favorite';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import { styled } from '@mui/material/styles';
 
 import './BottomNav.css';
 
@@ -21,17 +22,24 @@ export default function FixedBottomNavigation() {
     const history = useHistory();
     const ref = React.useRef(null);
 
+    // options: DBDAEA, C9DCB3, EEEFA8
+    // color: #FFFFFF;
+
+    const StyledBottomNav = styled(BottomNavigation)`
+    background-color: #89B6A5;
+`;
+
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={4}>
-        <BottomNavigation
+        <StyledBottomNav
           showLabels
         >
             <BottomNavigationAction onClick={() => {history.push(`/addfriend`);}} label="Add A Friend" icon={<AddCircleOutlineRoundedIcon />} />
             <BottomNavigationAction onClick={() => {history.push(`/user`);}} label="Friends" icon={<FavoriteRoundedIcon />} />
             <BottomNavigationAction onClick={() => {history.push(`/events`);}} label="Events" icon={<CalendarTodayRoundedIcon />} />
-        </BottomNavigation>
+        </StyledBottomNav>
       </Paper>
     </Box>
   );

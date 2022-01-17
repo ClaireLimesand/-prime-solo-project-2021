@@ -12,14 +12,15 @@
 /* .nav a {
   text-decoration: none;
 } */
-
 .nav-title {
   font-family: 'Playfair Display', serif;
   text-align: center;
   font-size: 40px;
   font-weight: 800;
   /* font-style: italic; */
-  color: #883955;
+  color: #08605F;
+  /* color: #883955; */
+  /* color: #FFB20F; */
   padding: 10px;
   margin: 0;
 }
