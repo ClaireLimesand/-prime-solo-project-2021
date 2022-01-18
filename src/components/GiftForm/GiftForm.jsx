@@ -59,12 +59,13 @@ function GiftForm() {
 
     return (
         <div className="container">
-            <p>Add Gift Page</p>
-            <Box textAlign="center" textAlign="center" m={1} pt={2}>
+            <h3>Add a gift:</h3>
+
                 <TextField 
+                    style = {{width: '100%'}}
                     type="text"
                     label="gift"
-                    variant="standard"
+                    variant="outlined"
                     value={gift}
                     onChange={(event) => setGift(event.target.value)}
                     required
@@ -76,16 +77,13 @@ function GiftForm() {
                     onClick={handleSaveButton}>
                 Add This Gift
                 </Button>
-            </Box>
-            
-            <Box textAlign="center" textAlign="center" m={1} pt={2}>
+
                 <Button
                     variant="contained"
                     id="saveButton"
                     onClick={() => history.push(`/friendpage/${params.id}`)}>
                 Back
                 </Button>
-            </Box>
 
             < BottomNav />
         </div>

@@ -50,8 +50,8 @@ function FriendForm() {
     }
 
     return (
-    <div>
-        <h3 className="title">Add your friend here:</h3>
+    <div className="container">
+        <h3>Add a friend:</h3>
         <Grid
                 container
                 direction="row"
@@ -59,7 +59,7 @@ function FriendForm() {
                 alignItems="center"
         >
             <TextField 
-                style = {{width: 300}}  
+                style = {{width: '100%'}}  
                 type="text"
                 label="Your freind's name"
                 variant="outlined"
@@ -68,20 +68,14 @@ function FriendForm() {
                 required
             />
         </Grid>
-        <Grid
-                container
-                direction="row"
-                justifyContent="space-evenly"
-                alignItems="center"
+            
+        <Button
+            variant="contained"
+            id="saveButton"
+            onClick={handleSaveButton}
         >
-            <Button
-                variant="contained"
-                id="saveButton"
-                onClick={handleSaveButton}
-            >
-                Add This Friend
-            </Button>
-        </Grid>
+        Add This Friend
+        </Button>
     
     < BottomNav />
     </div>

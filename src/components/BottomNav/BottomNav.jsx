@@ -22,9 +22,6 @@ export default function FixedBottomNavigation() {
     const history = useHistory();
     const ref = React.useRef(null);
 
-    // options: DBDAEA, C9DCB3, EEEFA8
-    // color: #FFFFFF;
-
     const StyledBottomNav = styled(BottomNavigation)`
     background-color: #89B6A5;
 `;

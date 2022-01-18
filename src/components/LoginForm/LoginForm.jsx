@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import MuiButton from "@material-ui/core/Button";
+import { Grid } from '@mui/material';
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const Button = styled(MuiButton)(spacing);
 
   const login = (event) => {
     event.preventDefault();

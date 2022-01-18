@@ -35,25 +35,26 @@ function FriendPage() {
     }, [params.id]);
 
     const eventsDisplay = () => {
-        if (detailsReducer.event.length == 0) {
+        if (detailsReducer.event && detailsReducer.event.length == 0) {
             return (
-                <p>{detailsReducer.name} doesn't have any upcoming events.</p>
+                <h4 className='display_title'>{detailsReducer.name} doesn't have any upcoming events.</h4>
             )
         } else {
             return (
                 <div>
+                    <h4 className='display_title'>{detailsReducer.name}'s upcoming events are: </h4>
                     {detailsReducer.event && detailsReducer.event.map((event, i) => {      
                         return <div key={i}>
-                                    <p>{detailsReducer.name}'s upcoming events are: </p>
-                                    <p>{event.name} on {event.date}</p>
-                                    <Button 
+                                    <p className='info'>{event.name} on {event.date}
+                                    <IconButton 
                                     variant="contained" 
                                     onClick={() => {
                                         history.push(`${params.id}/editevent/${event.event_id}`);
                                         }}
                                     >
-                                        Edit
-                                    </Button>
+                                    <EditRoundedIcon /> 
+                                    </IconButton>
+                                    </p>
                                 </div>
                     })}
                 </div>
@@ -62,17 +63,17 @@ function FriendPage() {
     };
     
     const giftsDisplay = () => {
-        if (detailsReducer.gifts.length == 0) {
+        if (detailsReducer.gifts && detailsReducer.gifts.length == 0) {
             return (
-                <p>{detailsReducer.name} does not have any gift ideas.</p>
+                <h4 className='display_title'>{detailsReducer.name} does not have any gift ideas.</h4>
             )
         } else {
             return (
                 <div>
+                <h4 className='display_title'>You think {detailsReducer.name} might like: </h4>
                 {detailsReducer.gifts && detailsReducer.gifts.map((gift, i) => {
                         return <div key={i}>
-                                    <h5>You think {detailsReducer.name} might like: </h5>
-                                    <p>{gift.idea}</p>
+                                    <p>{gift.idea}
                                     <IconButton 
                                     variant="contained" 
                                     onClick={() => {
@@ -81,6 +82,7 @@ function FriendPage() {
                                     >
                                     <EditRoundedIcon />     
                                     </IconButton>
+                                    </p>
                                 </div>
                 })}
                 </div>
@@ -90,7 +92,7 @@ function FriendPage() {
     
     
     return (
-    <div>
+    <div className="standard">
         <h2 className="friend_title">{detailsReducer.name}</h2>
 
         {eventsDisplay()}
@@ -119,7 +121,7 @@ function FriendPage() {
                 onClick={() => {
                 history.push(`${params.id}/addevent`);
             }}>
-                Add an event for {detailsReducer.name}
+                Add event
             </Button>
         </Box>
 
@@ -149,7 +151,7 @@ function FriendPage() {
                 onClick={() => {
                 history.push(`${params.id}/addgift`);
             }}>
-                Add a gift for {detailsReducer.name}
+                Add gift
             </Button>
         </Box>
 

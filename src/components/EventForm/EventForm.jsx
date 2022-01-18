@@ -30,8 +30,8 @@ function EventForm() {
   const params = useParams();
 
   const [event, setEvent] = useState('');
-  // const [date, setDate] = React.useState(new Date('2022-01-01T12:00:00'));
-  const [date, setDate] = React.useState(null);
+  const [date, setDate] = React.useState(new Date('2022-01-01T12:00:00'));
+  // const [date, setDate] = React.useState(null);
 
   const handleChange = (newDate) => {
     setDate(newDate);
@@ -73,9 +73,9 @@ function EventForm() {
 
   return (
     <div className="container">
-      <p>Add Event Page</p>
+      <h3>Add an event:</h3>
         <TextField 
-          style = {{width: 360}} 
+          style = {{width: '100%'}} 
           type="text"
           label="Event name"
           value={event}
@@ -85,6 +85,7 @@ function EventForm() {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={2}>
           <MobileDatePicker
+            style = {{width: 300}} 
             label="Event date"
             inputFormat="MM/dd/yyyy"
             value={date}

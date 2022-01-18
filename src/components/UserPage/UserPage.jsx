@@ -39,20 +39,37 @@ function UserPage() {
 
   return (
     <div className="container">
+    <Box sx={{ fontSize: 18, textAlign: 'center' }}>
+
       <h2 className="introduction">Welcome, {user.username}!</h2>
       
       <Grid container 
             spacing={2}
             direction="column"
             justifyContent="center"
-            alignItems="stretch">
+            alignItems="stretch"
+      >
+
       {
       store.friendsReducer.map((friend, i) => (
-        <Grid alignItems="center" key={i} item xs={6}>
-          <Card text-align="center" className={"friendCard"} onClick={()=>{goToFriend(friend)}}>
+        <Grid 
+          key={i} 
+          item xs={6}
+          justify="center"
+          alignItems="center"
+          align="center"
+        >
+          <Card variant="outlined" text-align="center" onClick={()=>{goToFriend(friend)}}>
             <CardContent className={"MuiCardContent-root"}>
-              <Grid container justify="space-evenly">
-                <label>{friend.name}</label>
+              <Grid container 
+                justify="center"
+                alignItems="center"
+      
+              >
+                <label>
+                  {friend.name}
+                </label>
+                < NavigateNextRoundedIcon />
               </Grid>
             </CardContent>
           </Card>
@@ -66,6 +83,8 @@ function UserPage() {
       </Box>
 
       <BottomNav />
+
+    </Box>
     </div>
   );
 }

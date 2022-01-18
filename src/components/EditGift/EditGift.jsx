@@ -79,9 +79,12 @@ function EditGift() {
     }
 
     return (
-        <div>
+        <div className="container">
+            <h3>Edit this gift:</h3>
+
             <div>
                 <TextField 
+                    style = {{width: '100%'}}
                     value={editGiftReducer.idea || ""}
                     onChange={handleIdeaChange}
                     label="Gift Name"

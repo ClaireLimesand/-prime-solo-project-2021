@@ -42,13 +42,6 @@ function EditPage() {
 
     console.log('params', params)
 
-    // useEffect(() => {
-    //     dispatch({
-    //         type: 'FETCH_FRIEND_DETAILS',
-    //         payload: params.id
-    //     })
-    // }, [params.id]);
-
     const handleNameChange = (event) => {
         dispatch({
             type: 'EDIT_EVENT_NAME',
@@ -103,52 +96,43 @@ function EditPage() {
     }
 
     return (
-    <div>
+    <div className="container">
+        <h3>Edit this event:</h3>
             
-        <ul>
+            <TextField 
+                style = {{width: '100%'}}
+                value={editEventReducer.name || ""}
+                onChange={handleNameChange}
+                label="Event Name"
+            >
+                {editEventReducer.name}
+            </TextField>
             
-                        <div>
-                            <TextField 
-                                value={editEventReducer.name || ""}
-                                onChange={handleNameChange}
-                                label="Event Name"
-                                >
-                                    {editEventReducer.name}
-                            </TextField>
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <Stack spacing={2}>
-                                <MobileDatePicker
-                                    label="Event date"
-                                    inputFormat="MM/dd/yyyy"
-                                    value={editEventReducer.date || null}
-                                    onChange={(newValue) => {handleDateChange(newValue)}}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                                </Stack>
-                            </LocalizationProvider>
-                        </div>
-        </ul>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Stack spacing={2}>
+                <MobileDatePicker
+                    label="Event date"
+                    inputFormat="MM/dd/yyyy"
+                    value={editEventReducer.date || null}
+                    onChange={(newValue) => {handleDateChange(newValue)}}
+                    renderInput={(params) => <TextField {...params} />}
+                />
+                </Stack>
+            </LocalizationProvider>
 
-        <div>
             <Button 
                 variant="contained" 
                 onClick={handleSaveButton}
             >
             Save
             </Button>
+            
             <Button 
                 variant="contained" 
                 onClick={() => handleDeleteEvent(params.event_id)}
             >
                 Delete
             </Button>
-            {/* <Button
-                variant="contained"
-                id="saveButton"
-                onClick={() => history.push(`/friendpage/${params.friend_id}`)}>
-                    Back
-            </Button> */}
-        </div>
 
         < BottomNav />
     </div>
