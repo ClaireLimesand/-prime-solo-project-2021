@@ -1,7 +1,9 @@
 # Gifter
 *Duration: 2 weeks*
 
-This was my first full-stack CRUD app! What an adventure. Gifter allows a user to keep track of their loved one’s upcoming events and add gift ideas so a special day will never catch them by surprise and they’ll always have a thoughtful present idea in their pocket. Users can browse their friends, their upcoming events, and view a friend’s page where they can add, edit, or delete a gift idea, or check out what gifts they thought their loved one might enjoy. Be ready, gift easy. 
+Gifter allows a user to keep track of their loved one’s upcoming events and add gift ideas so a special day will never catch them by surprise and they’ll always have a thoughtful present idea in their pocket. Users can browse their friends, their upcoming events, and view a friend’s page where they can add, edit, or delete a gift idea, or check out what gifts they thought their loved one might enjoy. Be ready, gift easy. 
+
+This was my first full-stack CRUD app! It's not perfect but I'm proud and excited to use all the lessons I learned building it on my next project! 
 
 ![Working Image](/public/gifter_demo.gif)
 
