@@ -1,8 +1,5 @@
-
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
-
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+# Gifter
+*Duration: 2 weeks*
 
 ## Use the Template for This Repository (Don't Clone)
 
@@ -15,23 +12,27 @@ Before you get started, make sure you have the following software installed on y
 
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
 
-## Create database and table
+## Installation
 
-Create a new database called `prime_app` and create a `user` table:
+- Create a new database called `gift_app` 
+- The queries in the `database.sql` file are setup to create and populate the necessary tables to allow this application to run correctly. Install [PostgreSQL](https://www.postgresql.org/download/) for your database and [Postico](https://eggerapps.at/postico/) to run the queries.
+- Create a `.env` file at the root of the project and paste this line into the file:
+  ```
+  SERVER_SESSION_SECRET=superDuperSecret
+  ```
+  While you're in your new `.env` file, replace `superDuperSecret` with some long random string to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+- Run `npm install`
+- Start postgres if not running already by using `brew services start postgresql`
+- Running the server code requires `nodemon`. If you don't already have `nodemon`, install it globally with `npm install nodemon --global`. 
+- Run `npm run server`
+- Run `npm run client`
+- Navigate to `localhost:3000`
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+## Usage
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
-## Development Setup Instructions
+
 
 - Run `npm install`
 - Create a `.env` file at the root of the project and paste this line into the file:
@@ -43,6 +44,7 @@ If you would like to name your database something else, you will need to change 
 - Run `npm run server`
 - Run `npm run client`
 - Navigate to `localhost:3000`
+- Right click and click "inspect" to open up the console. Click the "Toggle Device Toolbar" on the upper left corner of the console and select iPhone 6/7/8 or the mobile view of your choice. This project was built to be used as a mobile app so this will give you the most accurate experience. 
 
 ## Debugging
 
